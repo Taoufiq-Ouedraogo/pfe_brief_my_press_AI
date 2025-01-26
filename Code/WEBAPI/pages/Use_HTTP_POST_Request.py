@@ -108,11 +108,6 @@ def run_flask_app():
     app.run(debug=True, use_reloader=False, host="0.0.0.0", port=6000)
 
 
-def stop_flask_app():
-    #os.kill(os.getpid(), signal.SIGINT)
-    sys.exit()
-
-
 # Run Flask API in the background
 #flask_thread = threading.Thread(target=run_flask_app)
 #flask_thread.daemon = True  # Allow the thread to exit when the main program exits
@@ -124,21 +119,11 @@ st.markdown("""
 
 """)
 
-# Display buttons in the same row
-col1, col2 = st.columns(2)
-
-with col1:
-    if st.button("Lancer le serveur"):
+if st.button("Lancer le serveur"):
         flask_thread = threading.Thread(target=run_flask_app)
         flask_thread.daemon = True
         flask_thread.start()
         st.success("Le serveur Flask est lancé à http://127.0.0.1:6000/")
-
-with col2:
-    if st.button("Arrêter le serveur"):
-        stop_flask_app()
-        st.warning("Le serveur Flask a été arrêté.")
-
 
 ###############################
 
@@ -159,7 +144,6 @@ Envoyez une requête HTTP POST avec un article à résumer. L'API vous renverra 
 
 
 st.markdown(""" 
-------
 
 #### URL de l'API
 
