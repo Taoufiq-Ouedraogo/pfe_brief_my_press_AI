@@ -1,0 +1,37 @@
+Metadata-Version: 2.2
+Name: bmp_lib
+Version: 0.1
+Summary: This package implement all the logic of Brief My Press.AI
+Author: Taoufiq OUEDRAOGO
+Author-email: taoufiq.ouedraogo@edu.ece.fr
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9, <3.12
+Description-Content-Type: text/markdown
+Requires-Dist: setuptools
+Requires-Dist: wheel
+Requires-Dist: twine
+Requires-Dist: requests
+Requires-Dist: ipywidgets
+Requires-Dist: transformers
+Requires-Dist: openai
+Requires-Dist: python-dotenv
+Requires-Dist: spacy
+Requires-Dist: gTTS
+Requires-Dist: flask
+Requires-Dist: io
+Requires-Dist: ipykernel
+Requires-Dist: flask
+Requires-Dist: json
+Requires-Dist: requests
+Requires-Dist: streamlit-router
+Requires-Dist: plotly
+Requires-Dist: openpyxl
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

@@ -2,3 +2,5 @@
 ./Code/.DS_Store
 ./Code/.venv/
 .devcontainer
+./Code/WEBAPI/env
+Code/WEBAPI/env/

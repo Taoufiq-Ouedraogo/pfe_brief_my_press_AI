@@ -118,10 +118,10 @@ st.markdown("""
 """)
 
 if st.button("Lancer le serveur"):
-        flask_thread = threading.Thread(target=run_flask_app)
-        flask_thread.daemon = True
-        flask_thread.start()
-        st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
+    flask_thread = threading.Thread(target=run_flask_app)
+    flask_thread.daemon = True
+    flask_thread.start()
+    st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
 
 ###############################
 

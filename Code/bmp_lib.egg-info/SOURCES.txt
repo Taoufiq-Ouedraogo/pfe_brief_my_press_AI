@@ -1,0 +1,5 @@
+bmp_lib.egg-info/PKG-INFO
+bmp_lib.egg-info/SOURCES.txt
+bmp_lib.egg-info/dependency_links.txt
+bmp_lib.egg-info/requires.txt
+bmp_lib.egg-info/top_level.txt
