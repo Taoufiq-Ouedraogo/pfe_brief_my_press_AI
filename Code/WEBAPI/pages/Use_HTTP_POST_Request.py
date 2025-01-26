@@ -135,7 +135,7 @@ with col1:
 
 with col2:
     if st.button("Arrêter le serveur"):
-        #stop_flask_app()
+        stop_flask_app()
         st.warning("Le serveur Flask a été arrêté.")
 
 
