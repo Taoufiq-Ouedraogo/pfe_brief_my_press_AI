@@ -16,5 +16,5 @@ streamlit-jwt-authenticator
 plotly
 flask
 openpyxl
-threading
+
 sys
