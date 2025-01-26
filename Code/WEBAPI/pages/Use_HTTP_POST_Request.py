@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
 import threading
+import os
+import signal
+import sys
 from flask import Flask, request, jsonify
 
 # URL for the Flask API (Replace with your production URL)
@@ -36,16 +39,13 @@ def Use_HTTP_POST_Request():
     })
 
 
-# Start Flask API in a separate thread
-def run_flask_app():
-    app.run(debug=False, use_reloader=False, host="0.0.0.0", port=6000)
 
 
 
-# Run Flask API in the background
-flask_thread = threading.Thread(target=run_flask_app)
-flask_thread.daemon = True  # Allow the thread to exit when the main program exits
-flask_thread.start()
+
+
+
+
 
 
 
@@ -79,7 +79,7 @@ for a in page_dico.keys():
     if st.sidebar.button(a):
         st.switch_page(page_dico[a])
 
-        
+
 
 
 # Title
@@ -88,9 +88,9 @@ st.markdown("<h2 style='text-align: center; color: #555;'>Documentation pour l'i
 st.markdown("---")
 
 
+
 # API REST
 st.header("🌐 Utilisation de l'API REST")
-
 
 
 st.markdown(""" 
@@ -98,8 +98,53 @@ st.markdown("""
 Cette page vous guide sur la manière d'utiliser notre API pour transformer vos articles en résumés et 
 fichiers audio en utilisant des requêtes HTTP POST. 
             
------
+-----""")
 
+            
+#####################
+
+# Start Flask API in a separate thread
+def run_flask_app():
+    app.run(debug=False, use_reloader=False, host="0.0.0.0", port=6000)
+
+
+def stop_flask_app():
+    os.kill(os.getpid(), signal.SIGINT)
+
+
+# Run Flask API in the background
+#flask_thread = threading.Thread(target=run_flask_app)
+#flask_thread.daemon = True  # Allow the thread to exit when the main program exits
+#flask_thread.start()
+
+
+st.markdown(""" 
+### Lancez/Stoppez le serveur
+
+""")
+
+# Display buttons in the same row
+col1, col2 = st.columns(2)
+
+with col1:
+    if st.button("Lancer le serveur"):
+        flask_thread = threading.Thread(target=run_flask_app)
+        flask_thread.daemon = True
+        flask_thread.start()
+        st.success("Le serveur Flask est lancé à http://127.0.0.1:6000/")
+
+with col2:
+    if st.button("Arrêter le serveur"):
+        stop_flask_app()
+        st.warning("Le serveur Flask a été arrêté.")
+
+
+###############################
+
+
+
+st.markdown(""" 
+----
 ### Fonctionnement de l'API REST
             
 Envoyez une requête HTTP POST avec un article à résumer. L'API vous renverra :
@@ -113,6 +158,8 @@ Envoyez une requête HTTP POST avec un article à résumer. L'API vous renverra 
 
 
 st.markdown(""" 
+------
+
 #### URL de l'API
 
 Pour utiliser notre API, envoyez une requête POST à :

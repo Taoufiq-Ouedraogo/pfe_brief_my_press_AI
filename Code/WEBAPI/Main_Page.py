@@ -3,8 +3,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Main Page",
-    layout="wide", 
-    page_icon="Code/WEBAPI/ressources/logo black.png"
+    layout="wide"
 )  
 
 
