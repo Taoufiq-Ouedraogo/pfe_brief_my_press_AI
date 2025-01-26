@@ -1,0 +1,15 @@
+setuptools 
+wheel
+twine
+streamlit 
+streamlit-folium
+requests
+folium
+ipywidgets
+transformers
+torch
+tensorflow
+openai
+python-dotenv
+streamlit-jwt-authenticator
+plotly
