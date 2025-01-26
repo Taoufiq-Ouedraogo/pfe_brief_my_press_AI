@@ -13,3 +13,4 @@ openai
 python-dotenv
 streamlit-jwt-authenticator
 plotly
+openpyxl

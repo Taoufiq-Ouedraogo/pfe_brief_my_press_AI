@@ -28,6 +28,10 @@ st.sidebar.button("💵 Nos tarifs")
 # Titre de la page
 st.title("📊 Analytics des Articles et Résumés")
 
+import os
+st.write("Répertoire de travail actuel:", os.getcwd())
+
+
 # Description section
 st.markdown("""
 --------           
