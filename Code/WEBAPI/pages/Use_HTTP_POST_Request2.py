@@ -13,7 +13,8 @@ app = Flask(__name__)
 
 
 @app.route('/Use_HTTP_POST_Request', methods=['POST'])
-def bmp_summaries_and_audio_restapi():
+def Use_HTTP_POST_Request():
+    print('------------------------------------------------------------------------', request.url)
     # Vérifier le token dans les en-têtes
     token = request.headers.get("id")
     
@@ -62,6 +63,7 @@ if __name__ == '__main__':
             'About': "# This is a header. This is an *extremely* cool app!"
         }
     )
+
 
     st.sidebar.title("📚 Accès rapide")
     st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
