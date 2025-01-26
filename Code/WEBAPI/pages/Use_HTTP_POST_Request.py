@@ -105,11 +105,12 @@ fichiers audio en utilisant des requêtes HTTP POST.
 
 # Start Flask API in a separate thread
 def run_flask_app():
-    app.run(debug=False, use_reloader=False, host="0.0.0.0", port=6000)
+    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=6000)
 
 
 def stop_flask_app():
-    os.kill(os.getpid(), signal.SIGINT)
+    #os.kill(os.getpid(), signal.SIGINT)
+    sys.exit()
 
 
 # Run Flask API in the background
