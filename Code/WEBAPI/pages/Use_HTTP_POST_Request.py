@@ -47,8 +47,6 @@ def Use_HTTP_POST_Request():
 
 
 
-
-
 # Streamlit ###############################
 st.set_page_config(
     page_title="HTTP POST Request",
@@ -105,7 +103,7 @@ fichiers audio en utilisant des requêtes HTTP POST.
 
 # Start Flask API in a separate thread
 def run_flask_app():
-    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=6000)
+    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
 
 
 # Run Flask API in the background
@@ -123,7 +121,7 @@ if st.button("Lancer le serveur"):
         flask_thread = threading.Thread(target=run_flask_app)
         flask_thread.daemon = True
         flask_thread.start()
-        st.success("Le serveur Flask est lancé à http://127.0.0.1:6000/")
+        st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
 
 ###############################
 
@@ -149,7 +147,7 @@ st.markdown("""
 
 Pour utiliser notre API, envoyez une requête POST à :
             
-`http://127.0.0.1:6000/Use_HTTP_POST_Request`
+`http://127.0.0.1:8000/Use_HTTP_POST_Request`
             
 ----
 """)
@@ -215,7 +213,7 @@ with left:
     \"""
 
     id = "bmp_media1"
-    url = "http://127.0.0.1:6000/Use_HTTP_POST_Request"
+    url = "http://127.0.0.1:8000/Use_HTTP_POST_Request"
 
     get_response_from_rest_api(text, id, url)
 

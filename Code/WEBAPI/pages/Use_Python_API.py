@@ -87,7 +87,7 @@ with right:
     st.code("""
 {
     "extractiveSummary": "Résumé extractif...",
-    "abstractiveSummary": "Résumé abstrait...",
+    "abstractiveSummary": "Résumé abstractif...",
     "extractiveAudioBuffer": "<buffer>",
     "abstractiveAudioBuffer": "<buffer>"
 }
@@ -97,7 +97,7 @@ with right:
     - `extractiveSummary` : Points clés extraits directement du texte original.
     - `abstractiveSummary` : Version reformulée et synthétique du contenu.
     - `extractiveAudioBuffer` : Audio (MP3) du résumé extractif.
-    - `abstractiveAudioBuffer` : Audio (MP3) du résumé abstrait.
+    - `abstractiveAudioBuffer` : Audio (MP3) du résumé abstractif.
 
     ✅ Les fichiers audio peuvent être enregistrés ou directement utilisés dans des playlists.
     """)
@@ -119,7 +119,7 @@ with st.expander("🔧 Exemple d'utilisation"):
 
     # Résultats
     print("Résumé extractif :", result["extractiveSummary"])
-    print("Résumé abstrait :", result["abstractiveSummary"])
+    print("Résumé abstractif :", result["abstractiveSummary"])
 
     """, language="python")
 
@@ -135,7 +135,7 @@ with st.expander("💾 Exemple d'enregistrement d'un buffer audio"):
     with open("audio_extractif.mp3", "wb") as f:
         f.write(result["extractiveAudioBuffer"].read())
 
-    with open("audio_abstrait.mp3", "wb") as f:
+    with open("audio_abstractif.mp3", "wb") as f:
         f.write(result["abstractiveAudioBuffer"].read())
             
     """, language="python")
