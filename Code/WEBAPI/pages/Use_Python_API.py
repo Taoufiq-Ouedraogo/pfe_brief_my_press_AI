@@ -12,12 +12,22 @@ st.set_page_config(
 
 
 
+# Logo
+st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
-st.sidebar.button("🌐 Tester l'API REST")
-st.sidebar.button("🐍 Tester la bibliothèque Python")
-st.sidebar.button("📊 Analytics")
-st.sidebar.button("💵 Nos tarifs")
+
+page_dico = {
+    "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
+    "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
+    "📊 Analytics": "pages/Analytics.py",
+    "💵 Nos tarifs": "pages/Pricing.py",
+}
+
+for a in page_dico.keys():
+    if st.sidebar.button(a):
+        st.switch_page(page_dico[a])
 
 
 
@@ -133,6 +143,7 @@ with st.expander("💾 Exemple d'enregistrement d'un buffer audio"):
 
 # Footer
 st.markdown("---")
+st.markdown("<p style='text-align: center; font-size: 35px;'> 🚀 Commencez à intégrer l'API dans vos médias dès aujourd'hui ! </p>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; font-size: 12px;'>© 2025 BMP Media AI - Tous droits réservés</p>", unsafe_allow_html=True)
 
 

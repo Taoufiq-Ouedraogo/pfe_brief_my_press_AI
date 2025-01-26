@@ -12,14 +12,24 @@ st.set_page_config(
 )
 
 
+
+# Logo
+st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
-st.sidebar.button("🌐 Tester l'API REST")
-st.sidebar.button("🐍 Tester la bibliothèque Python")
-st.sidebar.button("📊 Analytics")
-st.sidebar.button("💵 Nos tarifs")
 
+page_dico = {
+    "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
+    "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
+    "📊 Analytics": "pages/Analytics.py",
+    "💵 Nos tarifs": "pages/Pricing.py",
+}
 
+for a in page_dico.keys():
+    if st.sidebar.button(a):
+        st.switch_page(page_dico[a])
+        
 
 
 # Style de la page
@@ -65,8 +75,9 @@ st.markdown("""
 # Titre principal
 st.markdown('<div class="title">💵 Pricing</div>', unsafe_allow_html=True)
 st.markdown("""
-Explore the different pricing options available for our services.  
-Our plans are tailored to meet a variety of needs:
+Découvrez nos plans tarifaires flexibles adaptés à vos besoins, allant de l’accès de base pour les petits projets à des solutions plus robustes pour les grandes entreprises. 
+
+Vous pouvez choisir entre des options pay-as-you-go ou des abonnements mensuels en fonction de votre fréquence d’utilisation.
 """)
 
 # Plans de tarification

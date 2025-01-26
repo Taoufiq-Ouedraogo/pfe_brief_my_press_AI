@@ -14,14 +14,25 @@ st.set_page_config(
 )
 
 
+
+# Logo
+st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
-st.sidebar.button("🌐 Tester l'API REST")
-st.sidebar.button("🐍 Tester la bibliothèque Python")
-st.sidebar.button("📊 Analytics")
-st.sidebar.button("💵 Nos tarifs")
 
+page_dico = {
+    "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
+    "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
+    "📊 Analytics": "pages/Analytics.py",
+    "💵 Nos tarifs": "pages/Pricing.py",
+}
 
+for a in page_dico.keys():
+    if st.sidebar.button(a):
+        st.switch_page(page_dico[a])
+
+        
 
 
 
@@ -50,8 +61,8 @@ Chaque graphique vous permet de déceler les tendances et les variations des don
 id_value = st.text_input('Entrez l\'ID de votre média:', value="exemple: bmp_media1")
 
 
-# 'Code/WEBAPI/historique_articles.xlsx'
-xl_file = 'https://raw.githubusercontent.com/Taoufiq-Ouedraogo/pfe_brief_my_press_AI/main/Code/WEBAPI/historique_articles.xlsx'
+# 'Code/WEBAPI/ressources/historique_articles.xlsx'
+xl_file = 'https://raw.githubusercontent.com/Taoufiq-Ouedraogo/pfe_brief_my_press_AI/main/Code/WEBAPI/ressources/historique_articles.xlsx'
 
 df = pd.read_excel(xl_file)
 df['article_length'] = df['article'].apply(len)

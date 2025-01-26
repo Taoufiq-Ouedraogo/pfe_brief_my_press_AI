@@ -3,16 +3,28 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Main Page",
-    layout="wide",
+    layout="wide", 
+    page_icon="Code/WEBAPI/ressources/logo black.png"
 )  
 
 
+# Logo
+st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
-st.sidebar.button("🌐 Tester l'API REST")
-st.sidebar.button("🐍 Tester la bibliothèque Python")
-st.sidebar.button("📊 Analytics")
-st.sidebar.button("💵 Nos tarifs")
+
+page_dico = {
+    "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
+    "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
+    "📊 Analytics": "pages/Analytics.py",
+    "💵 Nos tarifs": "pages/Pricing.py",
+}
+
+for a in page_dico.keys():
+    if st.sidebar.button(a):
+        st.switch_page(page_dico[a])
+  
 
 
 # Titre principal
@@ -71,20 +83,3 @@ st.markdown("<p style='text-align: center; font-size: 12px;'>© 2025 BMP Media A
 
 
 
-# Create an environment
-# python -m venv .venv
-
-# Windows PowerShell
-# .venv\Scripts\Activate.ps1
-
-# macOS and Linux
-# source .venv/bin/activate
-
-# deactivate the env 
-# deactivate
-
-# streamlit hello or python -m streamlit hello
-# streamlit run Main_Page.py
-
-
-# pip install -r requirements.txt
