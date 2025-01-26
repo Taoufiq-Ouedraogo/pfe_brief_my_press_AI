@@ -43,15 +43,12 @@ st.header("🌐 Utilisation de l'API REST")
 # URL de l'API
 url = "http://127.0.0.1:6000/bmp_summaries_and_audio_rest_api"
 url = "http://localhost:8501"
+url = "https://brief-my-press-ai.streamlit.app/Use_HTTP_POST_Request"
 
 
-
-app = Flask(__name__)
-
-@app.route('/api/summaries_and_audio', methods=['POST'])
 def bmp_summaries_and_audio_restapi():
     # Vérifier le token dans les en-têtes
-    token = request.headers.get("Authorization")
+    token = request.headers.get("id")
     
     if token != 'votre_token_attendu':  # Vous pouvez valider le token ici
         return jsonify({"error": "Unauthorized"}), 401
@@ -71,6 +68,5 @@ def bmp_summaries_and_audio_restapi():
         'abstractiveAudioBuffer': 'abstractiveAudioBuffer'
     })
 
-if __name__ == '__main__':
-    pass#app.run(debug=True, port=6000)
+ 
 

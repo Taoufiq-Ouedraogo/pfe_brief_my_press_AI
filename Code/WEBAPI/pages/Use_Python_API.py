@@ -32,7 +32,7 @@ st.markdown("---")
 # Bibliothèque Python
 st.header("🐍 Utilisation de la bibliothèque Python : [`bmp_lib`](https://github.com/Taoufiq-Ouedraogo/Brief-My-Press-AI-Library)")
 
-st.code("pip install bmp_lib", language="bash")
+st.code("pip install bmp_lib@git+https://github.com/Taoufiq-Ouedraogo/Brief-My-Press-AI-Library", language="bash")
 
 
 

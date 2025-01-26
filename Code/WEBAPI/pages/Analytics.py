@@ -50,7 +50,10 @@ Chaque graphique vous permet de déceler les tendances et les variations des don
 id_value = st.text_input('Entrez l\'ID de votre média:', value="exemple: bmp_media1")
 
 
-df = pd.read_excel('Code/WEBAPI/historique_articles.xlsx')
+# 'Code/WEBAPI/historique_articles.xlsx'
+xl_file = 'https://raw.githubusercontent.com/Taoufiq-Ouedraogo/pfe_brief_my_press_AI/main/Code/WEBAPI/historique_articles.xlsx'
+
+df = pd.read_excel(xl_file)
 df['article_length'] = df['article'].apply(len)
 df['extractiveSummary_length'] = df['extractiveSummary'].apply(len)
 df['abstractiveSummary_length'] = df['abstractiveSummary'].apply(len)
