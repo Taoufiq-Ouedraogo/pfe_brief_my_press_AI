@@ -42,9 +42,9 @@ st.markdown("---")
 # Bibliothèque Python
 st.header("🐍 Utilisation de la bibliothèque Python : [`BmpLib-Ai`](https://github.com/Taoufiq-Ouedraogo/Brief-My-Press-AI-Library)")
 
-st.warning("⚠️ Version de Python requise : >= 3.10, < 3.13")
+st.warning("⚠️ Version de Python requise : >= 3.10, < 3.11")
 
-st.code("pip install bmp-lib", language="bash")
+st.code("pip install BmpLib-Ai", language="bash")
 
 
 
@@ -259,25 +259,28 @@ with st.expander("💾 Exemple d'enregistrement d'un buffer audio"):
     """, language="python")
 
 
+
 # Chatbot
 with st.expander("🤖 Exemple d'utilisation du Chatbot"):
     left, right = st.columns(2)
 
+
     with left:
         "##### Code"
         st.code("""
-        # Appel de la fonction
-        bmp_object = bmp.get_BMP_Article_Object(text, media_id)
+    # Appel de la fonction
+    bmp_object = bmp.get_BMP_Article_Object(text, media_id)
 
-        # Utilisez le chatbot pour poser une question
-        response = bmp_object.chat_with_question("De qui parle le texte?")
-        print('\nanswer: ', response)
+    # Utilisez le chatbot pour poser une question
+    response = bmp_object.chat_with_question("De qui parle le texte?")
+    print('answer: ', response)
         """, language="python")
+
 
     with right:
         "##### Output"
         st.code("""
-        Le texte parle de l'importance de l'intelligence artificielle dans la recherche moderne.
+            Le texte parle de l'importance de l'intelligence artificielle dans la recherche moderne. 
         """, language="json")
    
 

@@ -44,9 +44,6 @@ def Use_HTTP_POST_Request():
 
 
 
-
-
-
 # Streamlit ###############################
 st.set_page_config(
     page_title="HTTP POST Request",
