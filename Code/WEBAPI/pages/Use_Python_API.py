@@ -40,20 +40,25 @@ st.markdown("---")
 
 
 # Bibliothèque Python
-st.header("🐍 Utilisation de la bibliothèque Python : [`bmp_lib`](https://github.com/Taoufiq-Ouedraogo/Brief-My-Press-AI-Library)")
+st.header("🐍 Utilisation de la bibliothèque Python : [`BmpLib-Ai`](https://github.com/Taoufiq-Ouedraogo/Brief-My-Press-AI-Library)")
 
-st.code("pip install git+https://github.com/Taoufiq-Ouedraogo/Brief-My-Press-AI-Library", language="bash")
+st.warning("⚠️ Version de Python requise : >= 3.10, < 3.13")
+
+st.code("pip install bmp-lib", language="bash")
+
 
 
 
 st.markdown("""
-Avec `bmp_lib`, vous pouvez :
+Avec `BmpLib-Ai`, vous pouvez :
 - Générer des résumés **extractifs** et **abstractifs**.
 - Convertir les résumés en **audio** (MP3).
+- Configurer un chatbot pour mieux interroger les articles.
 - Intégrer nos services dans vos scripts ou applications Python.
-
------
+            
+------
 """)
+
 
 
 
@@ -62,9 +67,9 @@ Avec `bmp_lib`, vous pouvez :
 left, right = st.columns(2)
 
 with left:
-    st.subheader("📝 Documentation des entrées : `bmp_summaries_and_audio`")
+    st.subheader("📝 Documentation des entrées : `get_BMP_Article_Object`")
     st.write("""
-    La fonction `bmp_summaries_and_audio` accepte les paramètres suivants :
+    La fonction `get_BMP_Article_Object` accepte les paramètres suivants :
     
     - **`text`** : *(str)*  
       Le texte de l'article à résumer.  
@@ -83,45 +88,155 @@ with left:
 
 with right:
     st.subheader("📦 Structure de la réponse")
-    st.write("La fonction retourne un dictionnaire contenant les champs suivants :")
+    st.write("La fonction retourne un objet `BMP_Object` contenant les attributs suivants :")
     st.code("""
-{
-    "extractiveSummary": "Résumé extractif...",
-    "abstractiveSummary": "Résumé abstractif...",
-    "extractiveAudioBuffer": "<buffer>",
-    "abstractiveAudioBuffer": "<buffer>"
-}
+            
+        "content": Texte complet de l’article
+            
+        "extractiveSummary": Résumé extractif...
+            
+        "abstractiveSummary": Résumé abstractif...
+            
+        "extractiveAudioBuffer": Buffer audio MP3 du résumé extractif
+            
+        "abstractiveAudioBuffer": Buffer audio MP3 du résumé abstractif
+            
+        "chat_model": Modèle utilisé pour générer des réponses 
+                        aux questions sur l’article
+    
     """, language="json")
-    st.write("""
-    **Détails des champs :**
-    - `extractiveSummary` : Points clés extraits directement du texte original.
-    - `abstractiveSummary` : Version reformulée et synthétique du contenu.
-    - `extractiveAudioBuffer` : Audio (MP3) du résumé extractif.
-    - `abstractiveAudioBuffer` : Audio (MP3) du résumé abstractif.
 
-    ✅ Les fichiers audio peuvent être enregistrés ou directement utilisés dans des playlists.
-    """)
 
 st.markdown("---")
 
 
 
+
+# Description générale du projet
+st.markdown("""
+            
+### 🌟 BMP_Object 🌟
+
+Cette classe permet de générer des résumés **extractifs** et **abstractifs** à partir d'un article, ainsi que des versions audio de ces résumés. De plus, elle intègre un chatbot capable de répondre à des questions basées sur le contenu de l'article.
+
+🔍 **Fonctionnalités principales** :
+- **Génération de résumés** : Résumés extractifs et abstractifs.
+- **Conversion audio** : Résumés convertis en fichiers audio (MP3).
+- **Chatbot interactif** : Posez des questions à l'article et obtenez des réponses générées par un modèle AI.
+
+""", unsafe_allow_html=True)
+
+
+
+
+
+# get_summaries()
+st.markdown("""
+            
+#### 🛠️ Méthodes accessibles
+            
+#### 1️⃣ `get_summaries()` : Résumés extractif et abstractif
+            
+Cette méthode retourne deux types de résumés générés à partir du texte de l'article :
+- **Résumé extractif** : Il extrait les passages les plus importants de l'article.
+- **Résumé abstractif** : Il reformule l'article pour générer un résumé condensé.
+
+🔑 **Retour** : Un tuple contenant les deux résumés sous forme de chaînes de caractères (`str`).
+""", unsafe_allow_html=True)
+
+
+
+# get_audios()
+st.markdown("""
+            
+#### 2️⃣ `get_audios()` : Buffers audio des résumés            
+Cette méthode génère des fichiers audio pour les deux types de résumés. Les résumés sont convertis en audio à l'aide de la technologie Google Text-to-Speech (gTTS).
+
+- **extractiveAudioBuffer** : Audio du résumé extractif.
+- **abstractiveAudioBuffer** : Audio du résumé abstractif.
+
+🔑 **Retour** : Un tuple contenant deux buffers audio (format MP3). 
+            
+Les utilisateurs peuvent ainsi écouter les résumés de manière pratique !
+
+✅ Les fichiers audio peuvent être enregistrés ou directement utilisés dans des playlists.
+""", unsafe_allow_html=True)
+
+
+
+# chat_with_question()
+st.markdown("""
+            
+#### 3️⃣ `chat_with_question()` : Interaction via un chatbot
+Cette méthode permet à l'utilisateur de poser des questions sur le contenu de l'article. Le modèle chatbot génère une réponse en utilisant le texte complet de l'article comme contexte.
+
+⚙️ **Paramètre** : 
+- `question` (str) : La question que vous souhaitez poser à propos de l'article.
+
+🔑 **Retour** : La réponse générée par le modèle sous forme de texte.
+
+ ------           
+""", unsafe_allow_html=True)
+
+
+
+
+"### Utilisation"
+st.code(""" import BmpLib_Ai as bmp """)
+
 # Exemple d'utilisation
-with st.expander("🔧 Exemple d'utilisation"):
-    st.code("""
-    from bmp_lib import bmp_summaries_and_audio
+with st.expander("🔧 Exemple d'utilisation des résumés"):
 
-    text = "Votre article ici..."
-    media_id = "bmp_media1"
+    left, right = st.columns(2)
 
-    # Appel de la fonction
-    result = bmp_summaries_and_audio(text, media_id)
+    with left:
+        "##### Code"
+        st.code("""
 
-    # Résultats
-    print("Résumé extractif :", result["extractiveSummary"])
-    print("Résumé abstractif :", result["abstractiveSummary"])
+        text = \"""
+                Accoudé à un bureau marqué du sceau présidentiel au cœur d’une salle bouillonnante remplie de supporteurs galvanisés, 
+                puis dans le bureau Ovale, Donald Trump a savamment mis en scène ses premiers paraphes devant les caméras du monde entier, 
+                lundi 20 janvier, au premier jour de son investiture. Réduction drastique de l’immigration, remise en cause du droit du sol et 
+                des droits des personnes transgenres, retrait de l’Organisation mondiale de la santé ou encore de l’accord de Paris sur le 
+                climat… Le 47e président des Etats-Unis a signé une avalanche de décrets marquant une rupture brutale avec l’administration Biden.
+                De nombreux juristes et acteurs de la société civile américaine estiment toutefois que plusieurs de ses décisions sortent de la 
+                légalité ou seront inapplicables. Les démocrates dénoncent également des mesures menaçant les droits des minorités et l’Etat de 
+                droit. Cela entraîne, dès le lendemain du retour de Donald Trump au pouvoir, la relance de la bataille judiciaire, qui avait marqué 
+                son premier mandat.
+        \"""
+                
+        media_id = "bmp_media1"
 
-    """, language="python")
+        # Appel de la fonction
+        bmp_object = bmp.get_BMP_Article_Object(text, media_id)
+
+        # Résultats
+        extractiveSummary, abstractiveSummary = bmp_object.get_summaries()
+        print("Résumé extractif :", extractiveSummary)
+        print("Résumé abstractif :", abstractiveSummary)
+
+        """, language="python")
+
+    with right:
+        "##### extractiveSummary Output"
+        st.code("""
+        au cœur d’une salle bouillonnante remplie de supporteurs galvanisés, puis dans le bureau Ovale, Donald Trump
+        a savamment mis en scène ses premiers paraphes devant les caméras du monde entier, lundi 20 janvier, au premier 
+        jour de son investiture. Réduction drastique de l’immigration, remise en cause du droit du sol et des droits des 
+        personnes transgenres, retrait de l’Organisation mondiale de la santé ou encore de l’accord de Paris sur le climat… 
+        De nombreux juristes et acteurs de la société civile américaine estiment toutefois que plusieurs de ses décisions sortent de la 
+        légalité ou seront inapplicables.
+        """, language="json")
+
+        "##### abstractiveSummary Output"
+        st.code("""
+        Donald Trump a savamment mis en scène ses premiers paraphes devant les caméras du monde entier, lundi 20 janvier, 
+        au premier jour de son investiture . Le 47e président des Etats-Unis a signé une avalanche de décrets marquant une 
+        rupture brutale avec l’administration Biden . De nombreux juristes et acteurs de la société civile américaine estiment 
+        toutefois que plusieurs de ses décisions sortent de la légalité ou seront inappli
+        """, language="json")
+
+
 
 
 
@@ -129,16 +244,89 @@ with st.expander("🔧 Exemple d'utilisation"):
 with st.expander("💾 Exemple d'enregistrement d'un buffer audio"):
     st.code("""
     # Appel de la fonction
-    result = bmp_summaries_and_audio(text, media_id)
-
+    bmp_object = get_BMP_Article_Object(text, media_id)
+    
+    # Résultats
+    extractiveAudioBuffer, abstractiveAudioBuffer = bmp_object.get_audios()
+            
     # Enregistrement du buffer audio en MP3
     with open("audio_extractif.mp3", "wb") as f:
-        f.write(result["extractiveAudioBuffer"].read())
+        f.write(extractiveAudioBuffer.read())
 
     with open("audio_abstractif.mp3", "wb") as f:
-        f.write(result["abstractiveAudioBuffer"].read())
+        f.write(abstractiveAudioBuffer.read())
             
     """, language="python")
+
+
+# Chatbot
+with st.expander("🤖 Exemple d'utilisation du Chatbot"):
+    left, right = st.columns(2)
+
+    with left:
+        "##### Code"
+        st.code("""
+        # Appel de la fonction
+        bmp_object = bmp.get_BMP_Article_Object(text, media_id)
+
+        # Utilisez le chatbot pour poser une question
+        response = bmp_object.chat_with_question("De qui parle le texte?")
+        print('\nanswer: ', response)
+        """, language="python")
+
+    with right:
+        "##### Output"
+        st.code("""
+        Le texte parle de l'importance de l'intelligence artificielle dans la recherche moderne.
+        """, language="json")
+   
+
+
+
+
+
+"""
+-----
+### Utilisation
+
+
+
+"""
+
+
+# Résumé extractif
+st.markdown("""
+### 🔹 Résumé Extractif        
+
+- **Modèle** : `fr_core_news_sm` de [spaCy](https://spacy.io/models/fr#fr_core_news_sm).
+- **Fonctionnement** : Le modèle analyse le texte et extrait les phrases les plus significatives.
+""")
+
+# Résumé abstrait
+st.markdown("""
+### 🔹 Résumé Abstrait
+
+- **Modèle** : `Falconsai/text_summarization` de [Hugging Face](https://huggingface.co/Falconsai/text_summarization).
+- **Fonctionnement** : Génération d'un résumé condensé du texte en utilisant un modèle de résumé abstrait.
+""")
+
+# Audio
+st.markdown("""
+### 🔹 Audio 
+
+- **Outil** : gTTS [Google Text-to-Speech](https://gtts.readthedocs.io/en/latest/).
+- **Fonctionnement** : Convertit les résumés extraits et abstraits en fichiers audio pour une écoute rapide.
+""")
+
+# Chatbot
+st.markdown("""
+### 🔹 Chatbot            
+
+- **Modèle** : `mlx-community/Llama-3.2-1B-Instruct-4bit` de [Hugging Face](https://huggingface.co/mlx-community/Llama-3.2-1B-Instruct-4bit).
+- **Fonctionnement** : Permet d'interagir avec le contenu de l'article pour obtenir des réponses précises aux questions.
+""")
+
+
 
 
 # Footer

@@ -185,6 +185,16 @@ st.markdown("""
             <td>✅</td>
         </tr>
         <tr>
+            <td>Personnalisation des résumés (taille, style, ...)</td>
+            <td>❌</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Personnalisation des audios (voix, intonation, ...)</td>
+            <td>❌</td>
+            <td>✅</td>
+        </tr>
+        <tr>
             <td>Documentation technique</td>
             <td>✅</td>
             <td>✅</td>

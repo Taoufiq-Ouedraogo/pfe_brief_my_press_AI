@@ -67,7 +67,7 @@ st.markdown("""
 - **📊 Gestion des médias** : Visualisez les rapports d’utilisation et évaluez l’impact des contenus.
 """)
 
-
+   
 
 # Appel à l'action
 st.markdown("---")
@@ -75,6 +75,15 @@ st.markdown("<h2 style='text-align: center;'>🚀 Commencez dès aujourd'hui à 
 st.success("Cliquez sur les boutons dans la barre latérale pour démarrer avec BMP Media AI.")
 
 
+
+""" 
+[GitHub Page](https://github.com/Taoufiq-Ouedraogo/Brief-My-Press-AI-Library)
+
+[Pypi Page](https://pypi.org/project/BmpLib-Ai/)
+
+
+[API Streamlit du Package Page](https://brief-my-press-ai.streamlit.app/Use_Python_API)
+"""
 
 # Footer
 st.markdown("---")
