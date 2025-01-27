@@ -1,8 +1,0 @@
-[console_scripts]
-setuptools-git-versioning = setuptools_git_versioning:__main__
-
-[distutils.setup_keywords]
-setuptools_git_versioning = setuptools_git_versioning:parse_config
-
-[setuptools.finalize_distribution_options]
-setuptools_git_versioning = setuptools_git_versioning:infer_version
