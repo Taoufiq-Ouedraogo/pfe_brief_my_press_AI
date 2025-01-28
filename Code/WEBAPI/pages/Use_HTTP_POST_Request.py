@@ -11,6 +11,12 @@ url = "https://brief-my-press-ai.streamlit.app/Use_HTTP_POST_Request"
 MEDIAS = ['bmp_media1', 'bmp_media22']
 
 
+
+
+
+
+
+
 # Flask API
 app = Flask(__name__)
 
@@ -39,6 +45,11 @@ def Use_HTTP_POST_Request():
     })
 
 
+##########
+# Exécute Streamlit dans un thread parallèle
+threading.Thread(target=lambda: st.run()).start()
+# Start Flask API in a separate thread
+app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8501)
 
 
 
@@ -95,12 +106,15 @@ fichiers audio en utilisant des requêtes HTTP POST.
             
 -----""")
 
+
+st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
+
             
 #####################
 
+
 # Start Flask API in a separate thread
-def run_flask_app():
-    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
+#app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
 
 
 # Run Flask API in the background
@@ -109,16 +123,16 @@ def run_flask_app():
 #flask_thread.start()
 
 
-st.markdown(""" 
+#st.markdown(""" 
 ### Lancez/Stoppez le serveur
+#""")
 
-""")
 
-if st.button("Lancer le serveur"):
-    flask_thread = threading.Thread(target=run_flask_app)
-    flask_thread.daemon = True
-    flask_thread.start()
-    st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
+#if st.button("Lancer le serveur"):
+ #   flask_thread = threading.Thread(target=run_flask_app)
+  #  flask_thread.daemon = True
+   # flask_thread.start()
+    #st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
 
 ###############################
 
