@@ -46,11 +46,15 @@ def Use_HTTP_POST_Request():
 
 
 ##########
+def run_flask():
+    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
+
 # Exécute Streamlit dans un thread parallèle
-threading.Thread(target=lambda: st.run()).start()
+threading.Thread(target=run_flask, daemon=True).start()
 # Start Flask API in a separate thread
 app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8501)
-
+print("-################################### Serveur Flask ok  ######################################@")
+st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
 
 
 
@@ -107,7 +111,6 @@ fichiers audio en utilisant des requêtes HTTP POST.
 -----""")
 
 
-st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
 
             
 #####################
