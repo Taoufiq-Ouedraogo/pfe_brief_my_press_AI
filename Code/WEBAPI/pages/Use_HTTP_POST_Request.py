@@ -18,10 +18,10 @@ MEDIAS = ['bmp_media1', 'bmp_media22']
 
 
 # Flask API
-#app = Flask(__name__)
+app = Flask(__name__)
 
 
-#@app.route('/Use_HTTP_POST_Request', methods=['POST'])
+@app.route('/Use_HTTP_POST_Request', methods=['POST'])
 def Use_HTTP_POST_Request():
     print('------------------------------------------------------------------------', request.url)
     # Vérifier le token dans les en-têtes
@@ -47,7 +47,7 @@ def Use_HTTP_POST_Request():
 
 ##########
 def run_flask():
-    pass#app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
+    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
 
 # Exécute Streamlit dans un thread parallèle
 #threading.Thread(target=run_flask, daemon=True).start()
@@ -120,11 +120,9 @@ def Use_HTTP_POST_Request():
         'abstractiveAudioBuffer': 'abstractiveAudioBuffer'
     })
 
-st.route('foo', Use_HTTP_POST_Request)
-#if st.server.request.foo == 'bar':
-  #st.server.respond(Use_HTTP_POST_Request)
 
 
+threading.Thread(target=run_flask, daemon=True).start()
 ######################################@@
 
 
