@@ -18,10 +18,10 @@ MEDIAS = ['bmp_media1', 'bmp_media22']
 
 
 # Flask API
-app = Flask(__name__)
+#app = Flask(__name__)
 
 
-@app.route('/Use_HTTP_POST_Request', methods=['POST'])
+#@app.route('/Use_HTTP_POST_Request', methods=['POST'])
 def Use_HTTP_POST_Request():
     print('------------------------------------------------------------------------', request.url)
     # Vérifier le token dans les en-têtes
@@ -44,16 +44,17 @@ def Use_HTTP_POST_Request():
         'abstractiveAudioBuffer': 'abstractiveAudioBuffer'
     })
 
+st.server.add_route('foo', foo_callback)
 
 ##########
 def run_flask():
-    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
+    pass#app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
 
 # Exécute Streamlit dans un thread parallèle
-threading.Thread(target=run_flask, daemon=True).start()
+#threading.Thread(target=run_flask, daemon=True).start()
 # Start Flask API in a separate thread
 print("-################################### Serveur Flask ok  ######################################@")
-st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
+#st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
 
 
 
@@ -89,6 +90,40 @@ for a in page_dico.keys():
         st.switch_page(page_dico[a])
 
 
+
+
+
+
+
+######################################@@
+def Use_HTTP_POST_Request():
+    print('------------------------------------------------------------------------', request.url)
+    # Vérifier le token dans les en-têtes
+    token = request.headers.get("id")
+    
+    if token not in MEDIAS:  # You can validate the token here
+        return jsonify({"error": "Unauthorized"}), 401
+    
+    # Check if the text is provided
+    data = request.json
+    article = data.get("text")
+    
+    if not article:
+        return jsonify({"error": "Text is required"}), 400
+    
+    return jsonify({
+        'extractiveSummary': 'extractiveSummary',
+        'abstractiveSummary': 'abstractiveSummary',
+        'extractiveAudioBuffer': 'extractiveAudioBuffer',
+        'abstractiveAudioBuffer': 'abstractiveAudioBuffer'
+    })
+
+st.server.add_route('foo', Use_HTTP_POST_Request)
+#if st.server.request.foo == 'bar':
+  #st.server.respond(Use_HTTP_POST_Request)
+
+
+######################################@@
 
 
 # Title
