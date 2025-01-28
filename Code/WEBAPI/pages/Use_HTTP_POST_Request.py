@@ -44,7 +44,6 @@ def Use_HTTP_POST_Request():
         'abstractiveAudioBuffer': 'abstractiveAudioBuffer'
     })
 
-st.server.add_route('foo', foo_callback)
 
 ##########
 def run_flask():
@@ -55,6 +54,9 @@ def run_flask():
 # Start Flask API in a separate thread
 print("-################################### Serveur Flask ok  ######################################@")
 #st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
+
+
+
 
 
 
@@ -124,6 +126,12 @@ st.route('foo', Use_HTTP_POST_Request)
 
 
 ######################################@@
+
+
+
+
+
+
 
 
 # Title
