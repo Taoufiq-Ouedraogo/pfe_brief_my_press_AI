@@ -118,7 +118,7 @@ def Use_HTTP_POST_Request():
         'abstractiveAudioBuffer': 'abstractiveAudioBuffer'
     })
 
-st.server.add_route('foo', Use_HTTP_POST_Request)
+st.route('foo', Use_HTTP_POST_Request)
 #if st.server.request.foo == 'bar':
   #st.server.respond(Use_HTTP_POST_Request)
 
