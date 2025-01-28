@@ -21,7 +21,7 @@ MEDIAS = ['bmp_media1', 'bmp_media22']
 app = Flask(__name__)
 
 
-@app.route('/Use_HTTP_POST_Request', methods=['POST'])
+@app.route('/BMP_API', methods=['POST'])
 def Use_HTTP_POST_Request():
     print('------------------------------------------------------------------------', request.url)
     # Vérifier le token dans les en-têtes
@@ -96,29 +96,6 @@ for a in page_dico.keys():
 
 
 
-
-######################################@@
-def Use_HTTP_POST_Request():
-    print('------------------------------------------------------------------------', request.url)
-    # Vérifier le token dans les en-têtes
-    token = request.headers.get("id")
-    
-    if token not in MEDIAS:  # You can validate the token here
-        return jsonify({"error": "Unauthorized"}), 401
-    
-    # Check if the text is provided
-    data = request.json
-    article = data.get("text")
-    
-    if not article:
-        return jsonify({"error": "Text is required"}), 400
-    
-    return jsonify({
-        'extractiveSummary': 'extractiveSummary',
-        'abstractiveSummary': 'abstractiveSummary',
-        'extractiveAudioBuffer': 'extractiveAudioBuffer',
-        'abstractiveAudioBuffer': 'abstractiveAudioBuffer'
-    })
 
 
 
