@@ -6,23 +6,60 @@ import signal
 import sys
 from flask import Flask, request, jsonify
 
-# URL for the Flask API (Replace with your production URL)
-url = "https://brief-my-press-ai.streamlit.app/Use_HTTP_POST_Request"
+
+ 
+
+
+# Streamlit ###############################
+st.set_page_config(
+    page_title="HTTP POST Request",
+    layout="wide",
+    menu_items={
+        'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+)
+
+
+
+no_sidebar_style = """
+    <style>
+        div[data-testid="stSidebarNav"] {display: none;}
+    </style>
+"""
+st.markdown(no_sidebar_style, unsafe_allow_html=True)
+
+
+# Logo
+st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+ 
+
+st.sidebar.title("📚 Accès rapide")
+st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
+
+page_dico = {
+    "🏠 Accueil": "Main_Page.py",
+    "💵 Nos tarifs": "pages/Pricing.py",
+    "📈 Analytics": "pages/Analytics.py",
+    "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
+    "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
+}
+
+
+for page_name, filepath in page_dico.items():
+    st.sidebar.page_link(filepath, label=page_name)
+    #if st.sidebar.button(a):
+        #st.switch_page(page_dico[a])
+        
+  
+
+
+
+
 MEDIAS = ['bmp_media1', 'bmp_media22']
 
-
-
-
-
-
-
-
-# Flask API
-app = Flask(__name__)
-
-
-@app.route('/BMP_API', methods=['POST'])
-def Use_HTTP_POST_Request():
+def BmP_API_HTTP():
     print('------------------------------------------------------------------------', request.url)
     # Vérifier le token dans les en-têtes
     token = request.headers.get("id")
@@ -45,62 +82,7 @@ def Use_HTTP_POST_Request():
     })
 
 
-##########
-def run_flask():
-    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
-
-# Exécute Streamlit dans un thread parallèle
-#threading.Thread(target=run_flask, daemon=True).start()
-# Start Flask API in a separate thread
 print("-################################### Serveur Flask ok  ######################################@")
-#st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
-
-
-
-
-
-
-
-# Streamlit ###############################
-st.set_page_config(
-    page_title="HTTP POST Request",
-    layout="wide",
-    menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
-    }
-)
-
-
-
-# Logo
-st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
-
-st.sidebar.title("📚 Accès rapide")
-st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
-
-page_dico = {
-    "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
-    "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "📊 Analytics": "pages/Analytics.py",
-    "💵 Nos tarifs": "pages/Pricing.py",
-}
-
-for a in page_dico.keys():
-    if st.sidebar.button(a):
-        st.switch_page(page_dico[a])
-
-
-
-
-
-
-
-
-
-threading.Thread(target=run_flask, daemon=True).start()
-######################################@@
 
 
 
@@ -127,37 +109,14 @@ fichiers audio en utilisant des requêtes HTTP POST.
             
 -----""")
 
-
-
-            
-#####################
-
-
-# Start Flask API in a separate thread
-#app.run(debug=True, use_reloader=False, host="0.0.0.0", port=8000)
-
-
-# Run Flask API in the background
-#flask_thread = threading.Thread(target=run_flask_app)
-#flask_thread.daemon = True  # Allow the thread to exit when the main program exits
-#flask_thread.start()
-
-
-#st.markdown(""" 
-### Lancez/Stoppez le serveur
-#""")
-
-
-#if st.button("Lancer le serveur"):
- #   flask_thread = threading.Thread(target=run_flask_app)
-  #  flask_thread.daemon = True
-   # flask_thread.start()
-    #st.success("Le serveur Flask est lancé à http://127.0.0.1:8000/")
-
-###############################
+st.success("Le serveur est lancé")
 
 
 
+
+
+
+# 
 st.markdown(""" 
 ----
 ### Fonctionnement de l'API REST

@@ -15,24 +15,37 @@ st.set_page_config(
 
 
 
+
+no_sidebar_style = """
+    <style>
+        div[data-testid="stSidebarNav"] {display: none;}
+    </style>
+"""
+st.markdown(no_sidebar_style, unsafe_allow_html=True)
+
+
 # Logo
 st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+ 
 
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
 
 page_dico = {
+    "🏠 Accueil": "Main_Page.py",
+    "💵 Nos tarifs": "pages/Pricing.py",
+    "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "📊 Analytics": "pages/Analytics.py",
-    "💵 Nos tarifs": "pages/Pricing.py",
 }
 
-for a in page_dico.keys():
-    if st.sidebar.button(a):
-        st.switch_page(page_dico[a])
 
+for page_name, filepath in page_dico.items():
+    st.sidebar.page_link(filepath, label=page_name)
+    #if st.sidebar.button(a):
+        #st.switch_page(page_dico[a])
         
+  
 
 
 

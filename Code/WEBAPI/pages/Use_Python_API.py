@@ -12,23 +12,53 @@ st.set_page_config(
 
 
 
+no_sidebar_style = """
+    <style>
+        div[data-testid="stSidebarNav"] {display: none;}
+    </style>
+"""
+st.markdown(no_sidebar_style, unsafe_allow_html=True)
+
+
 # Logo
 st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+ 
 
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
 
 page_dico = {
+    "🏠 Accueil": "Main_Page.py",
+    "💵 Nos tarifs": "pages/Pricing.py",
+    "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "📊 Analytics": "pages/Analytics.py",
-    "💵 Nos tarifs": "pages/Pricing.py",
 }
 
-for a in page_dico.keys():
-    if st.sidebar.button(a):
-        st.switch_page(page_dico[a])
+ 
 
+
+for page_name, filepath in page_dico.items():
+    st.sidebar.page_link(filepath, label=page_name)
+    #if st.sidebar.button(a):
+        #st.switch_page(page_dico[a])
+        
+  
+
+st.markdown("""
+    <style>
+        .sidebar .sidebar-content .element-container {
+            background-color: transparent;
+        }
+        .sidebar .sidebar-content .element-container:hover {
+            background-color: #f0f0f0;
+        }
+        .sidebar .sidebar-content .element-container.selected {
+            background-color: #2C3E50; /* Darker blue shade */
+            color: white;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 
 
@@ -192,7 +222,8 @@ with st.expander("🔧 Exemple d'utilisation des résumés"):
     with left:
         "##### Code"
         st.code("""
-
+        import BmpLib_Ai as bmp
+                
         text = \"""
                 Accoudé à un bureau marqué du sceau présidentiel au cœur d’une salle bouillonnante remplie de supporteurs galvanisés, 
                 puis dans le bureau Ovale, Donald Trump a savamment mis en scène ses premiers paraphes devant les caméras du monde entier, 
@@ -274,6 +305,9 @@ with st.expander("🤖 Exemple d'utilisation du Chatbot"):
     # Utilisez le chatbot pour poser une question
     response = bmp_object.chat_with_question("De qui parle le texte?")
     print('answer: ', response)
+                
+    response = bmp_object.chat_with_question('quels sont les dates mentionnées?')
+    print('answer: ', response)
         """, language="python")
 
 
@@ -290,16 +324,13 @@ with st.expander("🤖 Exemple d'utilisation du Chatbot"):
 
 """
 -----
-### Utilisation
-
-
-
+### Modèles
 """
 
 
 # Résumé extractif
 st.markdown("""
-### 🔹 Résumé Extractif        
+#### 🔹 Résumé Extractif        
 
 - **Modèle** : `fr_core_news_sm` de [spaCy](https://spacy.io/models/fr#fr_core_news_sm).
 - **Fonctionnement** : Le modèle analyse le texte et extrait les phrases les plus significatives.
@@ -307,7 +338,7 @@ st.markdown("""
 
 # Résumé abstrait
 st.markdown("""
-### 🔹 Résumé Abstrait
+#### 🔹 Résumé Abstrait
 
 - **Modèle** : `Falconsai/text_summarization` de [Hugging Face](https://huggingface.co/Falconsai/text_summarization).
 - **Fonctionnement** : Génération d'un résumé condensé du texte en utilisant un modèle de résumé abstrait.
@@ -315,7 +346,7 @@ st.markdown("""
 
 # Audio
 st.markdown("""
-### 🔹 Audio 
+#### 🔹 Audio 
 
 - **Outil** : gTTS [Google Text-to-Speech](https://gtts.readthedocs.io/en/latest/).
 - **Fonctionnement** : Convertit les résumés extraits et abstraits en fichiers audio pour une écoute rapide.
@@ -323,11 +354,42 @@ st.markdown("""
 
 # Chatbot
 st.markdown("""
-### 🔹 Chatbot            
+#### 🔹 Chatbot            
 
 - **Modèle** : `mlx-community/Llama-3.2-1B-Instruct-4bit` de [Hugging Face](https://huggingface.co/mlx-community/Llama-3.2-1B-Instruct-4bit).
 - **Fonctionnement** : Permet d'interagir avec le contenu de l'article pour obtenir des réponses précises aux questions.
 """)
+
+
+
+
+"""
+-----
+### Architecture de la Bibliothèque
+"""
+
+l, ll, r = st.columns(3)
+
+with l:
+    st.image("Code/WEBAPI/ressources/lib_python_tree.png", width=1000)
+
+with r:
+    st.markdown("""
+    ##### Structure
+
+    - **LICENSE** : Définit les termes de la licence d’utilisation du projet
+    - **dist/** : Contient les fichiers de distribution du package
+    - **pyproject.toml** : Contient la configuration moderne pour le projet
+    - **requirements.txt** : Liste les dépendances nécessaires au projet
+    - **src/** : Contient le code source de l’application ou bibliothèque
+    - **BmpLib_Ai/** : dossier contenant les fichiers du package Python principal
+    - **BmpLib_Ai.egg-info/** : contenant les métadonnées générées pour la distribution du package
+    """)
+
+
+
+
+
 
 
 

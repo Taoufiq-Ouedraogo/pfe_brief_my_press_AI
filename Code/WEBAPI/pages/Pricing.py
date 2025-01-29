@@ -13,78 +13,129 @@ st.set_page_config(
 
 
 
+no_sidebar_style = """
+    <style>
+        div[data-testid="stSidebarNav"] {display: none;}
+    </style>
+"""
+st.markdown(no_sidebar_style, unsafe_allow_html=True)
+
+
 # Logo
 st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+ 
 
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
 
 page_dico = {
+    "🏠 Accueil": "Main_Page.py",
+    "💵 Nos tarifs": "pages/Pricing.py",
+    "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "📊 Analytics": "pages/Analytics.py",
-    "💵 Nos tarifs": "pages/Pricing.py",
 }
 
-for a in page_dico.keys():
-    if st.sidebar.button(a):
-        st.switch_page(page_dico[a])
 
 
 
-# Style de la page
+for page_name, filepath in page_dico.items():
+    st.sidebar.page_link(filepath, label=page_name)
+    #if st.sidebar.button(a):
+        #st.switch_page(page_dico[a])
+        
+  
+
+        
+
+
+
+
+
+# Style CSS
 st.markdown("""
 <style>
     .title {
-        font-size: 2.5rem;
+        font-size: 3rem;
         font-weight: bold;
         color: #4A90E2;
         margin-bottom: 1rem;
     }
     .sub-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: bold;
         color: #333333;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
     }
     .price-box {
         background-color: #f9f9f9;
         border-radius: 10px;
         padding: 20px;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        width: 90%;  
+        margin: 10px;
     }
     .price-box:hover {
         background-color: #f0f0f0;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
     .price {
-        font-size: 1.25rem;
+        font-size: 2rem;
         color: #4A90E2;
         font-weight: bold;
+        margin-top: 10px;
+        text-align: left;
     }
     .cta {
         font-weight: bold;
         color: #4A90E2;
+        font-size: 1.25rem;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    ul li {
+        margin-bottom: 10px;
+    }
+    ul li:before {
+        content: "✔️ ";
+        color: green;
+    }
+
+    .standard {
+        background-color: #E0E0E0;  /* Gris clair pour Standard */
+        color: #333333;  /* Texte sombre */
+    }
+    .premium {
+        background-color: #A9D6E5;  /* Bleu pastel pour Premium */
+        color: #2C3E50;  /* Bleu foncé pour le texte, contraste élégant */
+        border: 1px solid #A9D6E5;  /* Bordure bleu pastel pour plus de cohérence */
+    }
+    .premium:hover {
+        background-color: #80C1D1;  /* Légèrement plus foncé au survol pour un effet chic */
     }
 </style>
 """, unsafe_allow_html=True)
 
 
+
 # Titre principal
 st.markdown('<div class="title">💵 Pricing</div>', unsafe_allow_html=True)
 st.markdown("""
-Découvrez nos plans tarifaires flexibles adaptés à vos besoins, allant de l’accès de base pour les petits projets à des solutions plus robustes pour les grandes entreprises. 
-
-Vous pouvez choisir entre des options pay-as-you-go ou des abonnements mensuels en fonction de votre fréquence d’utilisation.
+Choisissez l’offre **Pay-As-You-Go** qui correspond à vos besoins : intégration autonome ou accompagnement complet. 
+Nos solutions sont flexibles et conçues pour optimiser vos contenus.
 """)
+
 
 # Plans de tarification
 plans = [
     {
         "name": "STANDARD : Intégration Autonome",
-        "price": "À partir de 99€/mois",
+        "price": "0,20€ / Million de token",
         "features": [
             "Accès à l'outil pour les résumés extractifs, abstractifs et audios.",
             "Documentation technique détaillée.",
@@ -95,11 +146,12 @@ plans = [
             "Flexibilité : adaptation aux besoins spécifiques.",
             "Économie : idéal pour les équipes techniques existantes.",
             "Rapidité : intégration immédiate après souscription."
-        ]
+        ],
+        "class": "standard"
     },
     {
         "name": "PREMIUM : Accompagnement clé en main",
-        "price": "Sur devis",
+        "price": "0,25€ / Million de token",
         "features": [
             "Support complet à l’intégration par BriefMyPress.",
             "Personnalisation avancée (design, format des résumés).",
@@ -110,14 +162,20 @@ plans = [
             "Sérénité : gestion technique entièrement assurée.",
             "Optimisation : ajustements continus selon les retours utilisateurs.",
             "Impact immédiat : solution prête à l’emploi."
-        ]
+        ],
+        "class": "premium"
     }
 ]
 
-# Affichage des plans
-for plan in plans:
+
+# Affichage des plans côte à côte
+col1, col2 = st.columns(2)
+
+with col1:
+    # Affichage du plan Standard
+    plan = plans[0]
     st.markdown(f"""
-    <div class="price-box">
+    <div class="price-box {plan['class']}">
         <div class="sub-title">{plan['name']}</div>
         <div class="price">{plan['price']}</div>
         <div class="description" style="font-size: 1.25rem; font-weight: bold; margin-top: 10px;">
@@ -135,9 +193,35 @@ for plan in plans:
     </div>
     """, unsafe_allow_html=True)
 
+with col2:
+    # Affichage du plan Premium
+    plan = plans[1]
+    st.markdown(f"""
+    <div class="price-box {plan['class']}">
+        <div class="sub-title">{plan['name']}</div>
+        <div class="price">{plan['price']}</div>
+        <div class="description" style="font-size: 1.25rem; font-weight: bold; margin-top: 10px;">
+            Caractéristiques principales :
+        </div>
+        <ul>
+            {''.join([f"<li>{feature}</li>" for feature in plan['features']])}
+        </ul>
+        <div class="description" style="font-size: 1.25rem; font-weight: bold; margin-top: 10px;">
+            Avantages pour le client :
+        </div>
+        <ul>
+            {''.join([f"<li>{advantage}</li>" for advantage in plan['advantages']])}
+        </ul>
+    </div>
+
+  
+
+    """, unsafe_allow_html=True)
+
 
 
 # Titre de la section
+"""----- """
 st.markdown('<div class="sub-title">📦 Récapitulatif des Packages</div>', unsafe_allow_html=True)
 
 
@@ -168,7 +252,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# Contenu du tableau
+
+
+
+# Tableau des fonctionnalités
 st.markdown("""
 <table>
     <thead>
@@ -185,12 +272,7 @@ st.markdown("""
             <td>✅</td>
         </tr>
         <tr>
-            <td>Personnalisation des résumés (taille, style, ...)</td>
-            <td>❌</td>
-            <td>✅</td>
-        </tr>
-        <tr>
-            <td>Personnalisation des audios (voix, intonation, ...)</td>
+            <td>Personnalisation des résumés (longueur, style, ...) <br> et des audios (voix, intonation, ...)</td>
             <td>❌</td>
             <td>✅</td>
         </tr>
@@ -232,17 +314,33 @@ st.markdown("""
         <tr>
             <td>Tarification</td>
             <td>Abonnement scalable basé sur le volume de requêtes</td>
-            <td>Abonnement scalable basé sur le volume de requêtes avec frais pour les services supplémentaires</td>
+            <td>Abonnement scalable basé sur le volume de requêtes <br> avec frais pour les services supplémentaires</td>
         </tr>
     </tbody>
 </table>
 """, unsafe_allow_html=True)
 
 
+
+
+
 # Appel à l'action
 st.markdown("""
+<br> 
 <div style="text-align: center; margin-top: 2rem;">
-    <span class="cta">Need help choosing a plan?</span>  
-    Reach out to us via the **Help** menu above!
+    <span class="cta">Besoin d'aide pour choisir un plan ?</span>  
+    <br><br>
+    <button style="padding: 10px 20px; font-size: 1rem; color: white; background-color: #4A90E2; border: none; border-radius: 5px; cursor: pointer;">
+        Contactez-nous
+    </button>
 </div>
 """, unsafe_allow_html=True)
+
+
+
+
+
+
+
+
+

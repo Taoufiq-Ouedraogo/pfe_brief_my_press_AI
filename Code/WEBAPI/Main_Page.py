@@ -3,27 +3,39 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Main Page",
-    layout="wide"
+    layout="wide", 
 )  
+
+
+no_sidebar_style = """
+    <style>
+        div[data-testid="stSidebarNav"] {display: none;}
+    </style>
+"""
+st.markdown(no_sidebar_style, unsafe_allow_html=True)
 
 
 # Logo
 st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+ 
 
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
 
 page_dico = {
+    "🏠 Accueil": "Main_Page.py",
+    "💵 Nos tarifs": "pages/Pricing.py",
+    "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "📊 Analytics": "pages/Analytics.py",
-    "💵 Nos tarifs": "pages/Pricing.py",
 }
 
-for a in page_dico.keys():
-    if st.sidebar.button(a):
-        st.switch_page(page_dico[a])
-  
+
+for page_name, filepath in page_dico.items():
+    st.sidebar.page_link(filepath, label=page_name)
+    #if st.sidebar.button(a):
+        #st.switch_page(page_dico[a])
+
 
 
 # Titre principal
@@ -37,19 +49,49 @@ st.markdown("<h2 style='text-align: center; color: #555;'>Une solution IA pour s
 st.markdown("---")
 st.markdown("""
 ### ✨ Bienvenue !
-BMP Media AI est une solution intelligente et sur-mesure qui simplifie et enrichit la consommation de contenu de presse écrite. Voici ce que nous proposons :
-- **Formats courts et simplifiés** : obtenez des résumés clairs en quelques secondes.
-- **Formats diversifiés** : vos articles peuvent être transformés en texte ou audio.
-- **Playlists personnalisées** : créez des collections audio de vos résumés préférés.
-- **Chatbot interactif** : explorez le contenu avec un chatbot et tirez des insights précis.
+            
+Brief My Press.AI est un outil IA sur-mesure conçue pour enrichir et adapter le contenu de presse écrite et ainsi favoriser sa consommation. 
+        
+Notre solution:
+- Est destinée aux entreprises médiatiques (presses, revues scientifiques/spécialisées, ...)
+- S’intègre facilement aux plateformes médias pour transformer la consommation de contenu
+- Propose des **formats courts et simplifiés** (avec des résumés d’articles)
+- Propose des **formats diversifiés** (texte, audio) pour les articles de presse écrite
 """)
+
+
+# Fonctionnalités
+st.markdown("---")
+st.markdown("### 🎯 Nos Fonctionnalités")
+
+st.markdown("""
+- **📝 Génération automatique de résumés d’articles de presse écrite** :  
+    - 📌 **Résumé extractif** : extrait directement les points clés du texte original  
+    - ✍️ **Résumé abstractif** : reformule et synthétise le contenu pour une compréhension claire et adaptée à chaque audience  
+
+<br>
+
+- **🔊 Génération automatique d’audios** : facilitant l’accès au contenu pour les utilisateurs qui préfèrent l’écoute  
+
+<br>
+
+- **🎵 Playlist personnalisable** : avec les audios des résumés pour une expérience continue et engageante  
+
+<br>
+
+- **🤖 Chatbot interactif** : pour tirer des connaissances plus précises sur les contenus  
+
+<br>
+
+- **📈 Suivi des performances des contenus** : incluant des statistiques sur l’impact des contenus et l’engagement utilisateur (temps d’écoute, articles consultés, ...)  
+""", unsafe_allow_html=True)
+
 
 
 # Modes d'accès
 st.markdown("---")
-st.markdown("### 🛠️ Comment accéder à nos services ?")
+st.markdown("### 🛠️ Comment accéder à nos services ? 2 méthodes")
 st.markdown("""
-#### 🔗 Deux modes d'accès sont disponibles :
 1. **Bibliothèque Python** : intégrez nos fonctionnalités directement dans vos workflows Python.
 2. **Requêtes HTTP POST** : utilisez notre API REST pour une intégration facile sur n'importe quelle plateforme.
 """)
@@ -58,14 +100,7 @@ st.markdown("""
 
     
 
-# Fonctionnalités supplémentaires
-st.markdown("---")
-st.markdown("### 🎯 Fonctionnalités supplémentaires")
-st.markdown("""
-- **🎵 Playlist personnalisée** : Créez et téléchargez des listes audio basées sur vos résumés préférés.
-- **🤖 Chatbot interactif** : Posez des questions et obtenez des informations enrichies sur les articles.
-- **📊 Gestion des médias** : Visualisez les rapports d’utilisation et évaluez l’impact des contenus.
-""")
+
 
    
 

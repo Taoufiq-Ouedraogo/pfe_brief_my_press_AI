@@ -10,9 +10,6 @@ ipywidgets
 transformers
 torch
 tensorflow
-openai
-python-dotenv
-streamlit-jwt-authenticator
 plotly
 flask
 openpyxl
