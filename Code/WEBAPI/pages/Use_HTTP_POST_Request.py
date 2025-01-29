@@ -76,9 +76,7 @@ def BmP_API_HTTP():
     
     return jsonify({
         'extractiveSummary': 'extractiveSummary',
-        'abstractiveSummary': 'abstractiveSummary',
-        'extractiveAudioBuffer': 'extractiveAudioBuffer',
-        'abstractiveAudioBuffer': 'abstractiveAudioBuffer'
+        'abstractiveSummary': 'abstractiveSummary'
     })
 
 
@@ -104,8 +102,7 @@ st.header("🌐 Utilisation de l'API REST")
 
 st.markdown(""" 
             
-Cette page vous guide sur la manière d'utiliser notre API pour transformer vos articles en résumés et 
-fichiers audio en utilisant des requêtes HTTP POST. 
+Cette page vous guide sur la manière d'utiliser notre API pour transformer vos articles en résumés en utilisant des requêtes HTTP POST. 
             
 -----""")
 
@@ -119,12 +116,11 @@ st.success("Le serveur est lancé")
 # 
 st.markdown(""" 
 ----
-### Fonctionnement de l'API REST
+#### ⚙️ Fonctionnement de l'API REST
             
 Envoyez une requête HTTP POST avec un article à résumer. L'API vous renverra :
 - 1 Résumé extractif: Points clés extraits directement du texte original.
 - 1 Résumé abstractif: Version reformulée et synthétique du contenu.
-- 2 Fichiers audio: Résumés convertis au format MP3.   
 
 ----
 """)
@@ -133,11 +129,11 @@ Envoyez une requête HTTP POST avec un article à résumer. L'API vous renverra 
 
 st.markdown(""" 
 
-#### URL de l'API
+####  🔗 URL de l'API
 
 Pour utiliser notre API, envoyez une requête POST à :
             
-`http://127.0.0.1:8000/Use_HTTP_POST_Request`
+`http://127.0.0.1:8000/BmP_API_HTTP`
             
 ----
 """)
@@ -205,8 +201,8 @@ with left:
     id = "bmp_media1"
     url = "http://127.0.0.1:8000/Use_HTTP_POST_Request"
 
-    get_response_from_rest_api(text, id, url)
-
+    response = get_response_from_rest_api(text, id, url)
+    response['extractiveSummary'], response['abstractiveSummary']
     """)
 
 
@@ -217,17 +213,13 @@ with right:
     st.code("""
 {
     "extractiveSummary": "Résumé extractif...",
-    "abstractiveSummary": "Résumé abstrait...",
-    "extractiveAudioBuffer": "<buffer>",
-    "abstractiveAudioBuffer": "<buffer>"
+    "abstractiveSummary": "Résumé abstractif...", 
 }
     """, language="json")
     st.write("""
     **Détails des champs :**
     - `extractiveSummary` : Points clés extraits directement du texte original.
-    - `abstractiveSummary` : Version reformulée et synthétique du contenu.
-    - `extractiveAudioBuffer` : Audio (MP3) du résumé extractif.
-    - `abstractiveAudioBuffer` : Audio (MP3) du résumé abstrait.
+    - `abstractiveSummary` : Version reformulée et synthétique du contenu. 
 
     ✅ Les fichiers audio peuvent être enregistrés ou directement utilisés dans des playlists.
     """)

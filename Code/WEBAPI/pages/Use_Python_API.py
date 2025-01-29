@@ -211,7 +211,7 @@ Cette méthode permet à l'utilisateur de poser des questions sur le contenu de 
 
 
 
-"### Utilisation"
+"### 💡 Utilisation"
 st.code(""" import BmpLib_Ai as bmp """)
 
 # Exemple d'utilisation
@@ -324,7 +324,7 @@ with st.expander("🤖 Exemple d'utilisation du Chatbot"):
 
 """
 -----
-### Modèles actuels
+### 🧠 Modèles actuels
 """
 
 
@@ -365,7 +365,7 @@ st.markdown("""
 
 """
 -----
-### Architecture de la Bibliothèque
+### 🏗️ Architecture de la Bibliothèque
 """
 
 l, ll, r = st.columns(3)
