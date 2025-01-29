@@ -324,7 +324,7 @@ with st.expander("🤖 Exemple d'utilisation du Chatbot"):
 
 """
 -----
-### Modèles
+### Modèles actuels
 """
 
 
