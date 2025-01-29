@@ -36,7 +36,7 @@ st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350)
  
 
 st.sidebar.title("📚 Accès rapide")
-st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
+st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous. ")
 
 page_dico = {
     "🏠 Accueil": "Main_Page.py",
