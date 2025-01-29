@@ -230,6 +230,38 @@ with right:
 # Footer
 st.markdown("---")
 st.markdown("<p style='text-align: center; font-size: 35px;'> 🚀 Commencez à intégrer l'API dans vos médias dès aujourd'hui ! </p>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 12px;'>© 2025 BMP Media AI - Tous droits réservés</p>", unsafe_allow_html=True)
 
+
+# Icônes avec liens et noms affichés en dessous
+st.markdown("""
+            
+### 🌍 Retrouvez-nous sur :
+
+<table style="width:100%; text-align:center;">
+    <tr>
+        <td>
+            <a href="https://pypi.org/project/BmpLib-Ai/" target="_blank">
+                <img src="https://fs.buttercms.com/resize=width:885/bswz3NJzT6WvKJHUc0Ii" alt="PyPI" width="200">
+            </a><br>
+            <a href="https://pypi.org/project/BmpLib-Ai/" target="_blank"><strong>PyPI</strong></a>
+        </td>
+        <td>
+            <a href="https://github.com/Taoufiq-Ouedraogo/Brief-My-Press-AI-Library" target="_blank">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="100">
+            </a><br>
+            <a href="https://github.com/Taoufiq-Ouedraogo/Brief-My-Press-AI-Library" target="_blank"><strong>GitHub</strong></a>
+        </td>
+        <td>
+            <a href="https://brief-my-press-ai.streamlit.app/Use_Python_API" target="_blank">
+                <img src="https://streamlit.io/images/brand/streamlit-logo-primary-colormark-darktext.png" alt="Streamlit" width="200">
+            </a><br>
+            <a href="https://brief-my-press-ai.streamlit.app/Use_Python_API" target="_blank"><strong>Streamlit</strong></a>
+        </td>
+    </tr>
+</table>
+""", unsafe_allow_html=True)
+
+
+# Footer
+st.markdown("<br><p style='text-align: center; font-size: 12px;'>© 2025 BMP Media AI - Tous droits réservés</p>", unsafe_allow_html=True)
 
