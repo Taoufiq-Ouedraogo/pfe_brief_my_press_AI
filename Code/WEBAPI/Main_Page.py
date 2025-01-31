@@ -16,7 +16,7 @@ st.markdown(no_sidebar_style, unsafe_allow_html=True)
 
 
 # Logo
-st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350) 
+st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350, use_column_width=True) 
  
 
 st.sidebar.title("📚 Accès rapide")
@@ -28,6 +28,7 @@ page_dico = {
     "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
+    "🖥️ Architecture logicielle de Brief My Press.AI": "pages/architecture_logicielle.py",
 }
 
 
@@ -40,7 +41,7 @@ for page_name, filepath in page_dico.items():
 
 # Titre principal
 st.markdown("<h1 style='text-align: center; color: #4CAF50;'>BMP Media AI</h1>", unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center; color: #555;'>Une solution IA pour simplifier la presse écrite</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #555;'>Une solution IA pour redynamiser la presse écrite</h2>", unsafe_allow_html=True)
 
 "----------------------------------"
 
@@ -57,6 +58,7 @@ Notre solution:
 - S’intègre facilement aux plateformes médias pour transformer la consommation de contenu
 - Propose des **formats courts et simplifiés** (avec des résumés d’articles)
 - Propose des **formats diversifiés** (texte, audio) pour les articles de presse écrite
+- Propose des Chatbots pour interagir avec les contenus
 """)
 
 
@@ -92,16 +94,13 @@ st.markdown("""
 st.markdown("---")
 st.markdown("### 🛠️ Comment accéder à nos services ? 2 méthodes")
 st.markdown("""
-1. **Bibliothèque Python** : intégrez nos fonctionnalités directement dans vos workflows Python.
-2. **Requêtes HTTP POST** : utilisez notre API REST pour une intégration facile sur n'importe quelle plateforme.
+1. **Requêtes HTTP POST** : utilisez notre API REST pour une intégration facile.
+2. **Bibliothèque Python** : intégrez nos fonctionnalités directement dans vos workflows Python.
 """)
 
  
 
     
-
-
-
    
 
 # Appel à l'action
