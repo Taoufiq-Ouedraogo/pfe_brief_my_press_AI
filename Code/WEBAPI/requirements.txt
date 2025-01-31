@@ -1,15 +1,8 @@
-scipy
-setuptools 
-wheel
-twine
 streamlit 
 streamlit-folium
 requests
 folium
-ipywidgets
-transformers
-torch
-tensorflow
+pandas
 plotly
 flask
 openpyxl

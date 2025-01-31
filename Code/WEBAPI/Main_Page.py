@@ -1,6 +1,8 @@
 import streamlit as st
+import os
 
 
+# streamlit run Code/WEBAPI/Main_Page.py
 st.set_page_config(
     page_title="Main Page",
     layout="wide", 
@@ -16,7 +18,13 @@ st.markdown(no_sidebar_style, unsafe_allow_html=True)
 
 
 # Logo
-st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350, use_container_width=True) 
+paths = ["Code/WEBAPI/ressources/logo black.png", "/ressources/logo black.png"]
+for path in paths:
+    if os.path.exists(path):
+        path = path
+        break
+st.sidebar.image(path, width=350, use_container_width=True)
+
  
 
 st.sidebar.title("📚 Accès rapide")

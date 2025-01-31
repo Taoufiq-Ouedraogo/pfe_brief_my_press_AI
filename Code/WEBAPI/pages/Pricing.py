@@ -162,8 +162,7 @@ plans = [
         ],
         "advantages": [
             "Sérénité : gestion technique entièrement assurée.",
-            "Optimisation : ajustements continus selon les retours utilisateurs.",
-            "Impact immédiat : solution prête à l’emploi."
+            "Optimisation : ajustements continus selon les retours utilisateurs."
         ],
         "class": "premium"
     }

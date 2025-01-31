@@ -4,3 +4,8 @@
 .devcontainer
 ./Code/WEBAPI/env
 Code/WEBAPI/env/
+./Code/.env/
+Code/WEBAPI/.env
+./Code/WEBAPI/.env
+Code/WEBAPI/. DS_Store
+./Code/WEBAPI/.venv
