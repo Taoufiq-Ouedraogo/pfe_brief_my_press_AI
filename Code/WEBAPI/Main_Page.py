@@ -16,7 +16,7 @@ st.markdown(no_sidebar_style, unsafe_allow_html=True)
 
 
 # Logo
-st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350, use_column_width=True) 
+st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350, use_container_width=True) 
  
 
 st.sidebar.title("📚 Accès rapide")
@@ -28,7 +28,7 @@ page_dico = {
     "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "🖥️ Architecture logicielle de Brief My Press.AI": "pages/architecture_logicielle.py",
+    "🖥️ Architecture logicielle": "pages/architecture_logicielle.py",
 }
 
 
