@@ -104,7 +104,8 @@ Cette page analytique vous offre une vision approfondie des performances de notr
 id_value = st.text_input('Entrez l\'ID de votre média:', value="exemple: bmp_media1")
 
 
-url = "https://raw.githubusercontent.com/Taoufiq-Ouedraogo/pfe_brief_my_press_AI/main/Code/WEBAPI/ressources/historique_articles.xlsx"
+#url = "https://raw.githubusercontent.com/Taoufiq-Ouedraogo/pfe_brief_my_press_AI/main/Code/WEBAPI/ressources/historique_articles.xlsx"
+url = "https://github.com/Taoufiq-Ouedraogo/pfe_brief_my_press_AI/blob/main/Code/WEBAPI/ressources/historique_articles.xlsx?raw=true"
 file_path = "historique_articles.xlsx"
 
 
