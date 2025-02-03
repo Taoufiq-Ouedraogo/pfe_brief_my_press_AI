@@ -148,23 +148,9 @@ if st.button('Valider'):
 
 
 
-        # Titre principal de la section
-        st.markdown("<h2 style='text-align:center; color:#4E4E4E;'> 📊 Longueur Moyenne des Articles et Résumés <br> <br> </h2>", unsafe_allow_html=True)
-
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            col1.metric("📄 Longueur moyenne des articles", f"{df['article_length'].mean():,.0f} caractères")
-        with col2:
-            col2.metric("📝 Longueur moyenne des résumés extractifs", f"{df['extractiveSummary_length'].mean():,.0f} caractères")
-        with col3:
-            col3.metric("🔍 Longueur moyenne des résumés abstractifs", f"{df['abstractiveSummary_length'].mean():,.0f} caractères")
-
-
-
-
 
         # Section pour les graphiques
-        st.markdown("<h2 style='text-align:center; color:#4E4E4E;'>  <br> <br> 📈 Distribution des Longueurs <br> </h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align:center; color:#4E4E4E;'>  <br>  📈 Distribution des Longueurs </h2>", unsafe_allow_html=True)
 
         # Plot des longueurs des articles et résumés
         fig1 = px.box(df, title=" ",
@@ -183,97 +169,66 @@ if st.button('Valider'):
 
 
 
-        # Distribution des longueurs avec KDE (Kernel Density Estimation)
-        columns = ['article_length', 'extractiveSummary_length', 'abstractiveSummary_length']
-        kde = ff.create_distplot([df[col] for col in columns], 
-                                group_labels=columns, show_hist=False, show_rug=False)
-
-        # Mise à jour des couleurs pour le KDE
-        for trace, color in zip(kde.data, colors):
-            trace.update(line=dict(color=color, width=3))
-
-        # Mise à jour du layout du graphique KDE
-        kde.update_layout(title=" ", 
-                        width=1500, height=700, 
-                        xaxis_title="Longueur", 
-                        yaxis_title="Densité", 
-                        template="plotly_white", 
-                        title_x=0.5)
-        st.plotly_chart(kde)
-
-
-
-
-
-
-        # Titre général des graphiques
-        st.markdown("<h2 style='text-align:center; color:#4E4E4E;'>Analyse des Longueurs des Articles et Résumés</h2>", unsafe_allow_html=True)
-
-        # Section pour les longueurs minimales
-        st.markdown("<h3 style='color:#4E4E4E;'>🔽 Longueurs Minimales</h3>", unsafe_allow_html=True)
-
-        # Affichage des graphiques dans des colonnes
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            c = 'Longueur minimale des articles complets'
-            fig11 = px.pie(kpi_df, values=c, color_discrete_sequence=['purple'], hole=0.8, title=c)
-            fig11.update_layout(annotations=[dict(text=str(kpi_df[c][0]), x=0.5, y=0.5, font_size=20, showarrow=False)], width=400, height=400)
-            fig11.update_traces(textinfo='value', textposition='outside', textfont_size=1)
-            st.plotly_chart(fig11, use_container_width=True)
-
-        with col2:
-            c = 'Longueur minimale des résumés extractifs'
-            fig22 = px.pie(kpi_df, values=c, color_discrete_sequence=['green'], hole=0.8, title=c)
-            fig22.update_layout(annotations=[dict(text=str(kpi_df[c][0]), x=0.5, y=0.5, font_size=20, showarrow=False)], width=400, height=400)
-            fig22.update_traces(textinfo='value', textposition='outside', textfont_size=1)
-            st.plotly_chart(fig22, use_container_width=True)
-
-        with col3:
-            c = 'Longueur minimale des résumés abstractifs'
-            fig33 = px.pie(kpi_df, values=c, color_discrete_sequence=['goldenrod'], hole=0.8, title=c)
-            fig33.update_layout(annotations=[dict(text=str(kpi_df[c][0]), x=0.5, y=0.5, font_size=20, showarrow=False)], width=400, height=400)
-            fig33.update_traces(textinfo='value', textposition='outside', textfont_size=1)
-            st.plotly_chart(fig33, use_container_width=True)
-
         # Section pour les longueurs maximales
-        st.markdown("<h3 style='color:#4E4E4E;'>🔼 Longueurs Maximales</h3>", unsafe_allow_html=True)
-
-        # Affichage des graphiques pour les longueurs maximales
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            c = 'Longueur maximale des articles complets'
-            fig111 = px.pie(kpi_df, values=c, color_discrete_sequence=['purple'], hole=0.8, title=c)
-            fig111.update_layout(annotations=[dict(text=str(kpi_df[c][0]), x=0.5, y=0.5, font_size=20, showarrow=False)], width=400, height=400)
-            fig111.update_traces(textinfo='value', textposition='outside', textfont_size=1)
-            st.plotly_chart(fig111, use_container_width=True)
-
-        with col2:
-            c = 'Longueur maximale des résumés extractifs'
-            fig222 = px.pie(kpi_df, values=c, color_discrete_sequence=['green'], hole=0.8, title=c)
-            fig222.update_layout(annotations=[dict(text=str(kpi_df[c][0]), x=0.5, y=0.5, font_size=20, showarrow=False)], width=400, height=400)
-            fig222.update_traces(textinfo='value', textposition='outside', textfont_size=1)
-            st.plotly_chart(fig222, use_container_width=True)
-
-        with col3:
-            c = 'Longueur maximale des résumés abstractifs'
-            fig333 = px.pie(kpi_df, values=c, color_discrete_sequence=['goldenrod'], hole=0.8, title=c)
-            fig333.update_layout(annotations=[dict(text=str(kpi_df[c][0]), x=0.5, y=0.5, font_size=20, showarrow=False)], width=400, height=400)
-            fig333.update_traces(textinfo='value', textposition='outside', textfont_size=1)
-            st.plotly_chart(fig333, use_container_width=True)
+        #st.markdown("<h3 style='color:#4E4E4E;'>🔼 Longueurs Maximales</h3>", unsafe_allow_html=True)
+        # Affichage des graphiques pour les longueurs maximales        
+        #with col1:
+            #c = 'Longueur maximale des articles complets'
+            #fig111 = px.pie(kpi_df, values=c, color_discrete_sequence=['purple'], hole=0.8, title=c)
+            #fig111.update_layout(annotations=[dict(text=str(kpi_df[c][0]), x=0.5, y=0.5, font_size=20, showarrow=False)], width=400, height=400)
+            #fig111.update_traces(textinfo='value', textposition='outside', textfont_size=1)
+           # st.plotly_chart(fig111, use_container_width=True) 
 
 
 
 
         # Titre général des graphiques
-        st.markdown("<h2 style='text-align:center; color:#4E4E4E;'> Impact des contenus </h2>", unsafe_allow_html=True)
-        coltps1, coltps2 = st.columns()
+        st.markdown("<h2 style='text-align:center; color:#4E4E4E;'>✨ Impact des contenus </h2>", unsafe_allow_html=True)
+        tps_df = pd.DataFrame({
+            "Temps avant BMP": [240, 260, 250, 270, 280, 290, 275, 265, 255, 250],   
+            "Temps Resumé Extractif": [180, 195, 185, 200, 205, 210, 195, 190, 185, 180],   
+            "Temps Resumé Abstractif": [150, 160, 155, 165, 170, 175, 160, 155, 150, 145],  
+            "Temps Chatbot": [260, 275, 265, 280, 290, 300, 285, 275, 265, 260], })
+
+        tps_df["Temps après BMP"] = tps_df["Temps Resumé Extractif"] + tps_df["Temps Resumé Abstractif"] + tps_df["Temps Chatbot"]
+
+
+
+
+        # Temps moyen conso
+        st.markdown("<h3 style='color:#4E4E4E;'>🔼 Temps Moyen de Consommation des Contenus <br> </h3>", unsafe_allow_html=True)
+
+        # Temps moyen avant vs apres BMP
+        coltpsm1, coltpsm2 = st.columns(2)
+        with coltpsm1:
+            coltpsm1.metric("📄 Avant Intégration", f"{tps_df['Temps avant BMP'].mean():,.0f} secondes")
+
+        with coltpsm2:
+            coltpsm2.metric("⛳️ Après Intégration", f"{tps_df['Temps après BMP'].mean():,.0f} secondes", delta=f"{(tps_df['Temps après BMP'].mean() - tps_df['Temps avant BMP'].mean()):,.0f} secondes")
+
+
+        st.markdown("<h3 <br> </h3>", unsafe_allow_html=True)
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            col1.metric("📄 Résumés Extractifs", f"{tps_df['Temps avant BMP'].mean():,.0f} secondes")
+        with col2:
+            col2.metric("📝 Résumés abstractifs", f"{tps_df['Temps après BMP'].mean():,.0f} secondes")
+        with col3:
+            col3.metric("🤖 Chatbot", f"{tps_df['Temps Chatbot'].mean():,.0f} secondes")
+
+
+    
+
+        # Graphe courbe 
+        st.markdown("<h3 <br> </h3>", unsafe_allow_html=True)
+        coltps1, coltps2 = st.columns(2)
         with coltps1:
             figtps1 = go.Figure()
 
             # Avant intégration de BMP
             figtps1.add_trace(go.Scatter(
                 x=list(range(1, 11)), 
-                y=df["Temps avant BMP"],  
+                y=tps_df["Temps avant BMP"],  
                 fill='tozeroy', 
                 mode='lines', 
                 name="Avant intégration de BMP", 
@@ -285,7 +240,7 @@ if st.button('Valider'):
             # Après intégration de BMP
             figtps1.add_trace(go.Scatter(
                 x=list(range(1, 11)), 
-                y=df["Temps après BMP"], 
+                y=tps_df["Temps après BMP"], 
                 fill='tonexty', 
                 mode='lines', 
                 name="Après intégration de BMP", 
@@ -310,7 +265,7 @@ if st.button('Valider'):
             # Résumé Abstractif
             figtps2.add_trace(go.Scatter(
                 x=list(range(1, 11)), 
-                y=df["Temps Resumé Abstractif"], 
+                y=tps_df["Temps Resumé Abstractif"], 
                 fill='tonexty', 
                 mode='lines', 
                 name="Résumé Abstractif",
@@ -321,7 +276,7 @@ if st.button('Valider'):
             # Résumé Extractif
             figtps2.add_trace(go.Scatter(
                 x=list(range(1, 11)), 
-                y=df["Temps Resumé Extractif"], 
+                y=tps_df["Temps Resumé Extractif"], 
                 fill='tonexty', 
                 mode='lines', 
                 name="Résumé Extractif",
@@ -332,7 +287,7 @@ if st.button('Valider'):
             # Chatbot
             figtps2.add_trace(go.Scatter(
                 x=list(range(1, 11)), 
-                y=df["Temps Chatbot"], 
+                y=tps_df["Temps Chatbot"], 
                 fill='tonexty', 
                 mode='lines', 
                 name="Chatbot",

@@ -1,4 +1,4 @@
-streamlit 
+streamlit==1.41.0
 streamlit-folium
 requests
 folium
@@ -7,3 +7,4 @@ plotly
 flask
 openpyxl
 requests
+watchdog

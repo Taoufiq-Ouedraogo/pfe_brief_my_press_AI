@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 
-
+# PYTHON 3.10
 # streamlit run Code/WEBAPI/Main_Page.py
 st.set_page_config(
     page_title="Main Page",
