@@ -41,7 +41,6 @@ page_dico = {
     "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "🖥️ Architecture logicielle": "pages/architecture_logicielle.py",
 }
  
 

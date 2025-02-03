@@ -19,9 +19,10 @@ st.markdown(no_sidebar_style, unsafe_allow_html=True)
 
 # Logo
 paths = ["Code/WEBAPI/ressources/logo black.png", "/ressources/logo black.png"]
-for path in paths:
-    if os.path.exists(path):
-        path = path
+path = ""
+for p in paths:
+    if os.path.exists(p):
+        path = p
         break
 st.sidebar.image(path, width=350, use_container_width=True)
 
@@ -30,13 +31,14 @@ st.sidebar.image(path, width=350, use_container_width=True)
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
 
+
+
 page_dico = {
     "🏠 Accueil": "Main_Page.py",
     "💵 Nos tarifs": "pages/Pricing.py",
     "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "🖥️ Architecture logicielle": "pages/architecture_logicielle.py",
 }
 
 
@@ -74,39 +76,46 @@ Notre solution:
 st.markdown("---")
 st.markdown("### 🎯 Nos Fonctionnalités")
 
-st.markdown("""
-- **📝 Génération automatique de résumés d’articles de presse écrite** :  
-    - 📌 **Résumé extractif** : extrait directement les points clés du texte original  
-    - ✍️ **Résumé abstractif** : reformule et synthétise le contenu pour une compréhension claire et adaptée à chaque audience  
+#st.markdown("""
+#- **📝 Génération automatique de résumés d’articles de presse écrite** :  
+ #   - 📌 **Résumé extractif** : extrait directement les points clés du texte original  
+ #   - ✍️ **Résumé abstractif** : reformule et synthétise le contenu pour une compréhension claire et adaptée à chaque audience  
 
-<br>
+#<br>
 
-- **🔊 Génération automatique d’audios** : facilitant l’accès au contenu pour les utilisateurs qui préfèrent l’écoute  
+#- **🔊 Génération automatique d’audios** : facilitant l’accès au contenu pour les utilisateurs qui préfèrent l’écoute  
 
-<br>
+#<br>
 
-- **🎵 Playlist personnalisable** : avec les audios des résumés pour une expérience continue et engageante  
+#- **🎵 Playlist personnalisable** : avec les audios des résumés pour une expérience continue et engageante  
 
-<br>
+#<br>
 
-- **🤖 Chatbot interactif** : pour tirer des connaissances plus précises sur les contenus  
+#- **🤖 Chatbot interactif** : pour tirer des connaissances plus précises sur les contenus  
 
-<br>
+#<br>
 
-- **📈 Suivi des performances des contenus** : incluant des statistiques sur l’impact des contenus et l’engagement utilisateur (temps d’écoute, articles consultés, ...)  
-""", unsafe_allow_html=True)
+#- **📈 Suivi des performances des contenus** : incluant des statistiques sur l’impact des contenus et l’engagement utilisateur (temps d’écoute, articles consultés, ...)  
+#""", unsafe_allow_html=True)
+
+
+st.image('Code/WEBAPI/ressources/fonctionnalite_bmp.png', width=350, use_container_width=True)
+
 
 
 
 # Modes d'accès
 st.markdown("---")
 st.markdown("### 🛠️ Comment accéder à nos services ? 2 méthodes")
-st.markdown("""
-1. **Requêtes HTTP POST** : utilisez notre API REST pour une intégration facile.
-2. **Bibliothèque Python** : intégrez nos fonctionnalités directement dans vos workflows Python.
-""")
-
+#st.markdown("""
+#1. **Requêtes HTTP POST** : utilisez notre API REST pour une intégration facile.
+#2. **Bibliothèque Python** : intégrez nos fonctionnalités directement dans vos workflows Python.
+#""")
  
+st.image('Code/WEBAPI/ressources/way_integrate.png', width=350, use_container_width=True)
+
+
+
 
     
    

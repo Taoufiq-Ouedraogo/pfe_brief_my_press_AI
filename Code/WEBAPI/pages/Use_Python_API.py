@@ -34,7 +34,6 @@ page_dico = {
     "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "🖥️ Architecture logicielle": "pages/architecture_logicielle.py",
 }
  
 
@@ -87,19 +86,11 @@ pip install BmpLib-Ai==0.0.29
 ```python
 pip install BmpLib-Ai==0.0.30
 ```
+
+______
 """)
 
 
-
-st.markdown("""
-Avec `BmpLib-Ai`, vous pouvez :
-- Générer des résumés **extractifs** et **abstractifs**.
-- Convertir les résumés en **audio** (MP3).
-- Configurer un chatbot pour mieux interroger les articles.
-- Intégrer nos services dans vos scripts ou applications Python.
-            
-------
-""")
 
 
 
@@ -160,11 +151,6 @@ st.markdown("""
 ### 🌟 BMP_Object 🌟
 
 Cette classe permet de générer des résumés **extractifs** et **abstractifs** à partir d'un article, ainsi que des versions audio de ces résumés. De plus, elle intègre un chatbot capable de répondre à des questions basées sur le contenu de l'article.
-
-🔍 **Fonctionnalités principales** :
-- **Génération de résumés** : Résumés extractifs et abstractifs.
-- **Conversion audio** : Résumés convertis en fichiers audio (MP3).
-- **Chatbot interactif** : Posez des questions à l'article et obtenez des réponses générées par un modèle AI.
 
 """, unsafe_allow_html=True)
 
@@ -371,37 +357,6 @@ st.markdown("""
 - **Modèle** : `mlx-community/Llama-3.2-1B-Instruct-4bit` de [Hugging Face](https://huggingface.co/mlx-community/Llama-3.2-1B-Instruct-4bit).
 - **Fonctionnement** : Permet d'interagir avec le contenu de l'article pour obtenir des réponses précises aux questions.
 """)
-
-
-
-
-"""
------
-### 🏗️ Architecture de la Bibliothèque
-"""
-
-l, ll, r = st.columns(3)
-
-with l:
-    st.image("Code/WEBAPI/ressources/lib_python_tree.png", width=1000)
-
-with r:
-    st.markdown("""
-    ##### Structure
-
-    - **LICENSE** : Définit les termes de la licence d’utilisation du projet
-    - **dist/** : Contient les fichiers de distribution du package
-    - **pyproject.toml** : Contient la configuration moderne pour le projet
-    - **requirements.txt** : Liste les dépendances nécessaires au projet
-    - **src/** : Contient le code source de l’application ou bibliothèque
-    - **BmpLib_Ai/** : dossier contenant les fichiers du package Python principal
-    - **BmpLib_Ai.egg-info/** : contenant les métadonnées générées pour la distribution du package
-    """)
-
-
-
-
-
 
 
 

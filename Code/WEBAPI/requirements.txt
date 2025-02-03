@@ -6,3 +6,4 @@ pandas
 plotly
 flask
 openpyxl
+requests

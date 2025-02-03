@@ -35,7 +35,6 @@ page_dico = {
     "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "🖥️ Architecture logicielle": "pages/architecture_logicielle.py",
 }
 
 
@@ -255,15 +254,31 @@ st.markdown("""
 
 
 
-
 # Tableau des fonctionnalités
 st.markdown("""
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
+    th:first-child {
+        text-align: center; /* Centre le texte dans la première colonne */
+    }
+    thead {
+        background-color: #f2f2f2;
+    }
+</style>
 <table>
     <thead>
         <tr>
             <th>Caractéristiques</th>
-            <th>Package STANDARD</th>
-            <th>Package PREMIUM</th>
+            <th>Package STANDARD 🔓</th>
+            <th>Package PREMIUM 💎</th>
         </tr>
     </thead>
     <tbody>
@@ -272,14 +287,29 @@ st.markdown("""
             <td>✅</td>
             <td>✅</td>
         </tr>
-        <tr>
-            <td>Personnalisation des résumés (longueur, style, ...) <br> et des audios (voix, intonation, ...)</td>
-            <td>❌</td>
+         <tr>
+            <td>Documentation technique</td>
+            <td>✅</td>
             <td>✅</td>
         </tr>
         <tr>
-            <td>Documentation technique</td>
+            <td>Suivi des performances</td>
             <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Engagement environnemental (financement d’initiatives écologiques) 🌱 </td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Maintenance technique</td>
+            <td>Par le client</td>
+            <td>Gérée par BriefMyPress</td>
+        </tr>
+        <tr>
+            <td>Personnalisation des résumés (longueur, style, ...) <br> et des audios (voix, intonation, ...)</td>
+            <td>❌</td>
             <td>✅</td>
         </tr>
         <tr>
@@ -293,16 +323,6 @@ st.markdown("""
             <td>✅</td>
         </tr>
         <tr>
-            <td>Maintenance technique</td>
-            <td>Par le client</td>
-            <td>Gérée par BriefMyPress</td>
-        </tr>
-        <tr>
-            <td>Suivi des performances</td>
-            <td>✅</td>
-            <td>✅</td>
-        </tr>
-        <tr>
             <td>Analyses avancées</td>
             <td>❌</td>
             <td>✅</td>
@@ -311,11 +331,6 @@ st.markdown("""
             <td>Formation des équipes</td>
             <td>❌</td>
             <td>✅</td>
-        </tr>
-        <tr>
-            <td>Tarification</td>
-            <td>Abonnement scalable basé sur le volume de requêtes</td>
-            <td>Abonnement scalable basé sur le volume de requêtes <br> avec frais pour les services supplémentaires</td>
         </tr>
     </tbody>
 </table>

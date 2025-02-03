@@ -9,3 +9,4 @@ Code/WEBAPI/.env
 ./Code/WEBAPI/.env
 Code/WEBAPI/. DS_Store
 ./Code/WEBAPI/.venv
+Code/WEBAPI/*.ipynb

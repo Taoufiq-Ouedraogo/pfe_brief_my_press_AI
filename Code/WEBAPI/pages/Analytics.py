@@ -1,7 +1,13 @@
 import streamlit as st
 import plotly.express as px
 import plotly.figure_factory as ff
+import plotly.graph_objects as go
 import pandas as pd
+import openpyxl
+import requests
+
+
+
 
 st.set_page_config(
     page_title="Analytics",
@@ -25,11 +31,19 @@ st.markdown(no_sidebar_style, unsafe_allow_html=True)
 
 
 # Logo
-st.sidebar.image("Code/WEBAPI/ressources/logo black.png", width=350, use_container_width=True) 
+paths = ["Code/WEBAPI/ressources/logo black.png", "/ressources/logo black.png"]
+path = ""
+for p in paths:
+    if os.path.exists(p):
+        path = p
+        break
+st.sidebar.image(path, width=350, use_container_width=True)
+
  
 
 st.sidebar.title("📚 Accès rapide")
 st.sidebar.write("Explorez nos fonctionnalités via les onglets ci-dessous.")
+
 
 
 page_dico = {
@@ -38,7 +52,6 @@ page_dico = {
     "📈 Analytics": "pages/Analytics.py",
     "🌐 Tester l'API REST": "pages/Use_HTTP_POST_Request.py",
     "🐍 Tester la bibliothèque Python": "pages/Use_Python_API.py",
-    "🖥️ Architecture logicielle": "pages/architecture_logicielle.py",
 }
 
 
@@ -46,13 +59,16 @@ for page_name, filepath in page_dico.items():
     st.sidebar.page_link(filepath, label=page_name)
     #if st.sidebar.button(a):
         #st.switch_page(page_dico[a])
+
+
+
         
   
 
 
 
 # Titre de la page
-st.title("📊 Analytics des Articles et Résumés")
+st.title("📊 Analytics")
 
 
 # Description section
@@ -61,12 +77,23 @@ st.markdown("""
 
 ###  ✨ Vue d'ensemble des performances de l'API
 
-Cette page analytique vous plonge au cœur des performances de notre API en offrant une analyse détaillée des articles et de leurs résumés (extractifs et abstractifs). 
+Cette page analytique vous offre une vision approfondie des performances de notre API, en analysant les différents contenus générés.
 
-Chaque graphique vous permet de déceler les tendances et les variations des données, vous offrant une vue claire sur la qualité des résultats générés. Vous pourrez comparer les différentes approches de résumé et ajuster vos attentes selon les performances observées. En résumé, cet espace est un outil indispensable pour comprendre en profondeur le fonctionnement de notre API et vous assurer de son efficacité dans votre plateforme.
+<br>
             
+🔹 Comparaison des méthodes : Évaluez les performances des différents formats de contenus pour affiner vos attentes.
+
+
+🔹 Suivi des indicateurs clés (Taux de rebond, taux d'engagement):
+
+- Mesurez l'interaction et l’engagement des utilisateurs avec les contenus générés. 
+            
+- Identifiez les améliorations pour optimiser l’expérience utilisateur.
+
+- Inclus des fonctionnalités [Google Analytics](https://marketingplatform.google.com/about/analytics/).
+    
 -------
-""")
+""", unsafe_allow_html=True)
 
 
 
@@ -76,13 +103,21 @@ Chaque graphique vous permet de déceler les tendances et les variations des don
 id_value = st.text_input('Entrez l\'ID de votre média:', value="exemple: bmp_media1")
 
 
-# 'Code/WEBAPI/ressources/historique_articles.xlsx'
-xl_file = 'https://raw.githubusercontent.com/Taoufiq-Ouedraogo/pfe_brief_my_press_AI/main/Code/WEBAPI/ressources/historique_articles.xlsx'
+url = "https://raw.githubusercontent.com/Taoufiq-Ouedraogo/pfe_brief_my_press_AI/main/Code/WEBAPI/ressources/historique_articles.xlsx"
+file_path = "historique_articles.xlsx"
 
-df = pd.read_excel(xl_file)
-df['article_length'] = df['article'].apply(lambda x: len(str(x).split()))
-df['extractiveSummary_length'] = df['extractiveSummary'].apply(lambda x: len(str(x).split()))
-df['abstractiveSummary_length'] = df['abstractiveSummary'].apply(lambda x: len(str(x).split()))
+
+# Télécharger le fichier
+response = requests.get(url)
+with open(file_path, "wb") as file:
+    file.write(response.content)
+
+df = pd.read_excel(file_path, engine="openpyxl")
+df['mediaID'] = ['bmp_media1'] * len(df)
+
+#df['article_length'] = df['article'].apply(lambda x: len(str(x).split()))
+#df['extractiveSummary_length'] = df['extractiveSummary'].apply(lambda x: len(str(x).split()))
+#df['abstractiveSummary_length'] = df['abstractiveSummary'].apply(lambda x: len(str(x).split()))
 
 
 # Bouton pour appliquer le filtre
@@ -166,19 +201,6 @@ if st.button('Valider'):
 
 
 
-        # Longueur moyenne des articles
-        #st.subheader("Longueur moyenne des articles complets et des résumés")
-        #kpi_df_m1 = kpi_df.melt(id_vars=['Nombre d\'articles'], 
-         #                           value_vars=['Longueur moyenne des articles complets', 
-          #                                      'Longueur moyenne des résumés extractifs', 
-           #                                     'Longueur moyenne des résumés abstractifs'], 
-            #                    var_name='Statistique', value_name='Valeur')
-
-       # fig2 = px.bar(kpi_df_m1, y="Statistique", x="Valeur",  color="Statistique", 
-        #            color_discrete_sequence=["purple", "green", "goldenrod"])
-
-        #fig2.update_layout(width=1500, height=600)
-        #st.plotly_chart(fig2)
 
 
 
@@ -239,6 +261,91 @@ if st.button('Valider'):
 
 
 
+
+        # Titre général des graphiques
+        st.markdown("<h2 style='text-align:center; color:#4E4E4E;'> Impact des contenus </h2>", unsafe_allow_html=True)
+        coltps1, coltps2 = st.columns()
+        with coltps1:
+            figtps1 = go.Figure()
+
+            # Avant intégration de BMP
+            figtps1.add_trace(go.Scatter(
+                x=list(range(1, 11)), 
+                y=df["Temps avant BMP"],  
+                fill='tozeroy', 
+                mode='lines', 
+                name="Avant intégration de BMP", 
+                opacity=0.7,
+                fillcolor="rgba(255, 0, 0, 0.6)",  # Red fill under the curve
+                line=dict(color="red")
+            ))
+
+            # Après intégration de BMP
+            figtps1.add_trace(go.Scatter(
+                x=list(range(1, 11)), 
+                y=df["Temps après BMP"], 
+                fill='tonexty', 
+                mode='lines', 
+                name="Après intégration de BMP", 
+                opacity=0.7,
+                fillcolor="rgba(0, 128, 0, 0.3)",  # Green fill under the curve
+                line=dict(color="green")
+            ))
+
+            # Update layout
+            figtps1.update_layout(
+                title="Temps de consommation des articles", 
+                xaxis_title="Lecteur", 
+                yaxis_title="Temps (s)", 
+                template="plotly_white"
+            )
+
+            st.plotly_chart(figtps1, use_container_width=True)
+
+        with coltps2:
+            figtps2 = go.Figure()
+
+            # Résumé Abstractif
+            figtps2.add_trace(go.Scatter(
+                x=list(range(1, 11)), 
+                y=df["Temps Resumé Abstractif"], 
+                fill='tonexty', 
+                mode='lines', 
+                name="Résumé Abstractif",
+                line=dict(color="black"),
+                fillcolor="rgba(0, 0, 0, 0.2)"  # Light Black between lines
+            ))
+
+            # Résumé Extractif
+            figtps2.add_trace(go.Scatter(
+                x=list(range(1, 11)), 
+                y=df["Temps Resumé Extractif"], 
+                fill='tonexty', 
+                mode='lines', 
+                name="Résumé Extractif",
+                line=dict(color="purple"),
+                fillcolor="rgba(128, 0, 128, 0.3)"  # Light Purple between lines
+            ))
+
+            # Chatbot
+            figtps2.add_trace(go.Scatter(
+                x=list(range(1, 11)), 
+                y=df["Temps Chatbot"], 
+                fill='tonexty', 
+                mode='lines', 
+                name="Chatbot",
+                line=dict(color="orange"),
+                fillcolor="rgba(255, 165, 0, 0.3)"  # Light Orange between lines
+            ))
+
+            # Update layout
+            figtps2.update_layout(
+                title="Temps de consommation après intégration de BMP",
+                xaxis_title="Lecteur",
+                yaxis_title="Temps (s)",
+                template="plotly_white"
+            )
+            st.plotly_chart(figtps2, use_container_width=True)
 
 
 # Icônes avec liens et noms affichés en dessous
