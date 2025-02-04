@@ -98,6 +98,10 @@ Cette page analytique vous offre une vision approfondie des performances de notr
 
 
 
+def convert_seconds(seconds):
+    minutes = int(seconds // 60)
+    sec = int(seconds % 60)
+    return f"{minutes}min {sec}sec"
 
 
 # Champ d'entrée pour l'ID
@@ -201,20 +205,21 @@ if st.button('Valider'):
         # Temps moyen avant vs apres BMP
         coltpsm1, coltpsm2 = st.columns(2)
         with coltpsm1:
-            coltpsm1.metric("📄 Avant Intégration", f"{tps_df['Temps avant BMP'].mean():,.0f} secondes")
+            coltpsm1.metric("📄 Avant Intégration", f"{convert_seconds(tps_df['Temps avant BMP'].mean())}")
 
         with coltpsm2:
-            coltpsm2.metric("⛳️ Après Intégration", f"{tps_df['Temps après BMP'].mean():,.0f} secondes", delta=f"{(tps_df['Temps après BMP'].mean() - tps_df['Temps avant BMP'].mean()):,.0f} secondes")
+            evolution = convert_seconds(tps_df['Temps après BMP'].mean() - tps_df['Temps avant BMP'].mean())
+            coltpsm2.metric("⛳️ Après Intégration", f"{convert_seconds(tps_df['Temps après BMP'].mean())}", delta=f"{evolution}")
 
 
         st.markdown("<h3 <br> </h3>", unsafe_allow_html=True)
         col1, col2, col3 = st.columns(3)
         with col1:
-            col1.metric("📄 Résumés Extractifs", f"{tps_df['Temps avant BMP'].mean():,.0f} secondes")
+            col1.metric("📄 Résumés Extractifs", f"{convert_seconds(tps_df['Temps avant BMP'].mean())}")
         with col2:
-            col2.metric("📝 Résumés abstractifs", f"{tps_df['Temps après BMP'].mean():,.0f} secondes")
+            col2.metric("📝 Résumés abstractifs", f"{convert_seconds(tps_df['Temps après BMP'].mean())}")
         with col3:
-            col3.metric("🤖 Chatbot", f"{tps_df['Temps Chatbot'].mean():,.0f} secondes")
+            col3.metric("🤖 Chatbot", f"{convert_seconds(tps_df['Temps Chatbot'].mean())}")
 
 
     
