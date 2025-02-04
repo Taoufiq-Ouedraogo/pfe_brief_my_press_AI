@@ -254,8 +254,8 @@ if st.button('Valider'):
                 title="Temps de consommation des articles", 
                 xaxis_title="Lecteur", 
                 yaxis_title="Temps (s)", 
-                template="plotly_white"
-            )
+                template="plotly_white", width=2000, height=600
+            )    
 
             st.plotly_chart(figtps1, use_container_width=True)
 
@@ -300,7 +300,7 @@ if st.button('Valider'):
                 title="Temps de consommation après intégration de BMP",
                 xaxis_title="Lecteur",
                 yaxis_title="Temps (s)",
-                template="plotly_white"
+                template="plotly_white", width=2500, height=600
             )
             st.plotly_chart(figtps2, use_container_width=True)
 
