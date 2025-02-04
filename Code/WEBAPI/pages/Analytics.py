@@ -190,11 +190,11 @@ if st.button('Valider'):
         st.markdown("<h2 style='text-align:center; color:#4E4E4E;'>✨ Impact des contenus </h2>", unsafe_allow_html=True)
         tps_df = pd.DataFrame({
             "Temps avant BMP": [240, 260, 250, 270, 280, 290, 275, 265, 255, 250],   
-            "Temps Resumé Extractif": [180, 195, 185, 200, 205, 210, 195, 190, 185, 180],   
-            "Temps Resumé Abstractif": [150, 160, 155, 165, 170, 175, 160, 155, 150, 145],  
+            "Temps Résumé Extractif": [180, 195, 185, 200, 205, 210, 195, 190, 185, 180],   
+            "Temps Résumé Abstractif": [150, 160, 155, 165, 170, 175, 160, 155, 150, 145],  
             "Temps Chatbot": [260, 275, 265, 280, 290, 300, 285, 275, 265, 260], })
 
-        tps_df["Temps après BMP"] = tps_df["Temps Resumé Extractif"] + tps_df["Temps Resumé Abstractif"] + tps_df["Temps Chatbot"]
+        tps_df["Temps après BMP"] = tps_df["Temps Résumé Extractif"] + tps_df["Temps Résumé Abstractif"] + tps_df["Temps Chatbot"]
 
 
 
@@ -215,9 +215,9 @@ if st.button('Valider'):
         st.markdown("<h3 <br> </h3>", unsafe_allow_html=True)
         col1, col2, col3 = st.columns(3)
         with col1:
-            col1.metric("📄 Résumés Extractifs", f"{convert_seconds(tps_df['Temps avant BMP'].mean())}")
+            col1.metric("📄 Résumés Extractifs", f"{convert_seconds(tps_df['Temps Résumé Extractif'].mean())}")
         with col2:
-            col2.metric("📝 Résumés abstractifs", f"{convert_seconds(tps_df['Temps après BMP'].mean())}")
+            col2.metric("📝 Résumés abstractifs", f"{convert_seconds(tps_df['Temps Résumé Abstractif'].mean())}")
         with col3:
             col3.metric("🤖 Chatbot", f"{convert_seconds(tps_df['Temps Chatbot'].mean())}")
 
@@ -270,7 +270,7 @@ if st.button('Valider'):
             # Résumé Abstractif
             figtps2.add_trace(go.Scatter(
                 x=list(range(1, 11)), 
-                y=tps_df["Temps Resumé Abstractif"], 
+                y=tps_df["Temps Résumé Abstractif"], 
                 fill='tonexty', 
                 mode='lines', 
                 name="Résumé Abstractif",
@@ -281,7 +281,7 @@ if st.button('Valider'):
             # Résumé Extractif
             figtps2.add_trace(go.Scatter(
                 x=list(range(1, 11)), 
-                y=tps_df["Temps Resumé Extractif"], 
+                y=tps_df["Temps Résumé Extractif"], 
                 fill='tonexty', 
                 mode='lines', 
                 name="Résumé Extractif",
